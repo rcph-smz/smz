@@ -1,0 +1,129 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+*::selection {
+    color: green;
+}
+*::-webkit-scrollbar {
+    display: none;
+}
+body {
+    background-color: lavender;
+}
+
+
+.smz-header  {
+    position: sticky;
+    position: -webkit-sticky;
+    z-index: 1;
+    top: 0;
+
+    display: block;
+
+    text-align: center;
+    padding: 24px;
+    font-size: 2em;
+    font-weight: 1000px;
+    text-shadow: 1px 1px 2px rgba(255,210,102,255);
+    text-transform: uppercase;
+
+    background-color: rgba(254,255,153,255);
+    color: rgba(109,64,18,255);
+
+}
+.smz-form {
+   position: static;
+   z-index: 0;
+
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+
+   margin: 5vw auto;
+   padding: 5vw;
+   width: 90vw;
+
+   background-color: aliceblue;
+}
+.smz-label {
+    position: static;
+    z-index: 0;
+
+    display: block;
+
+    padding: 20px;
+    font-size: 1.5em;
+
+    text-align: center;
+}
+.smz-lastname {
+    position: static;
+    z-index: 0;
+
+    display: block;
+    padding: 10px;
+    background-color: aliceblue;
+
+    width: 90%;
+
+    text-align: center;
+    border: solid 2px rgba(255,210,102,255);
+    border-radius: 4px;
+    font-family: monospace;
+}
+.smz-textarea {
+    position: static;
+    z-index: 0;
+
+    display: block;
+    padding: 10px;
+    background-color: aliceblue;
+
+    width: 90%;
+
+    border: solid 2px rgba(255,210,102,255);
+    border-radius: 4px;
+    font-family: monospace;
+    font-size: 0.8rem;
+    
+    resize: both;
+    
+    
+}
+.smz-textarea::marker{
+    color: green;
+}
+.smz-submit {
+
+    position: static;
+    z-index: 0;
+
+    display: block;
+    padding: 10px;
+    background-color: aliceblue;
+
+    width: 90%;
+
+    border: solid 2px rgba(255,210,102,255);
+    border-radius: 4px;
+    
+    margin: 5vw 0;
+
+    cursor: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/9632/happy.png"), crosshair;
+    
+}
+.smz-submitted {
+    position: static;
+    z-index: 0;
+
+    display: block;
+    
+
+    padding: 20px;
+    font-size: 1.5em;
+
+    text-align: center;
+}

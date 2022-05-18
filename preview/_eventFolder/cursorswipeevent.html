@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cursormoveevent</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background-color: lavenderblush;
+
+            height: 100vh;
+            width: 100vw;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        let touchdown,touchup
+        document.body.addEventListener("mousedown", (clickdown) => {
+            touchdown = clickdown.screenX
+        })
+        document.body.addEventListener("mouseup", (clickup) => {
+            touchup = clickup.screenX
+            touchXDistance(touchdown,touchup,4,500)
+        })
+
+        // window.addEventListener('pointerdown', function onFirstPointer(e) {
+        //     window.POINTER_SIZE = e.height;
+        //     window.removeEventListener('pointerdown', onFirstPointer, false);
+        // }, false);
+
+        document.body.addEventListener("touchstart", (clickdown) => {
+            touchdown = clickdown.touches[0].screenX
+        })
+        document.body.addEventListener("touchmove", (clickdown) => {
+            touchup = clickdown.touches[0].screenX
+        })
+        document.body.addEventListener("touchcancel", () => {
+            touchup = touchdown
+        })
+        document.body.addEventListener("touchend", () => {
+            touchXDistance(touchdown,touchup,4,500)
+        })
+
+        function touchXDistance(clickStart,clickEnd,min,max) {
+            clickValue = clickEnd - clickStart
+            let applicableList = []
+            for(min; min < max; ++min){
+                applicableList[min] = min
+                applicableList[max + min] = -min
+            }
+            applicableList.forEach((applicableValue) => {
+                if(applicableValue == clickValue) {
+                    if(applicableValue > 0) {
+                        console.log("direction right")
+                        navigator.vibrate(500)
+                    }
+                    if(applicableValue < 0) {
+                        console.log("direction left")
+                        navigator.vibrate(500)
+                    }
+                }
+            })
+        }
+        
+
+
+    </script>
+</body>
+</html>

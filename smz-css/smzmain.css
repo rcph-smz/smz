@@ -1,0 +1,314 @@
+@font-face {
+   font-family: 'Mochiy Pop One';
+   src: url("../smz-fonts/MochiyPopOne-Regular.ttf");
+}
+@font-face {
+   font-family: 'Hachi Maru Pop';
+   src: url("../smz-fonts/HachiMaruPop-Regular.ttf");
+}
+* {
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+   font-family: 'Mochiy Pop One' , 'Hachi Maru Pop',helvetica , arial , monospace;
+}
+*::selection {
+    color: rgba(198,175,165,5); /* rgba(113,162,219,255) rgba(113,162,219,255)*/
+}
+
+*::-webkit-scrollbar {
+   width: 8px;
+}
+*::-webkit-scrollbar-thumb {
+   background-color: rgba(14,143,214,0.4);
+   border-radius: 2em;
+   border: solid 1px lavender;
+}
+*::-webkit-scrollbar-track {
+   background-color: lavenderblush;
+}
+body {
+    background-color: lavender;
+    overflow-x: hidden;
+}
+
+
+
+.smz-contain-header_nav {
+   position: sticky;
+   position: -webkit-sticky;
+   z-index: 11;
+   top: 0;
+
+   display: flex;
+   flex-direction: row;
+   justify-content: center;
+   align-items: center;
+   
+}
+.smz-header {
+   position: static;
+   
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   flex-basis: 40%;
+
+   padding: 24px 0 ;
+   color: lavender;
+   background: rgba(198,175,165,.4); /* rgba(14,143,214,0.5) rgba(14,143,214,0.4)*/
+   text-overflow: ellipsis;
+   overflow: hidden;
+   white-space: nowrap;
+   text-shadow: 2px 2px 1px rgb(127,113,120);
+   border-radius: 0 0 30px 0;
+}
+.smz-nav {
+   position: static;
+
+   display: flex;
+   justify-content: flex-end; /* center */
+   align-items: center;
+   flex-basis: 60%;
+
+   
+   color: lavender;
+   background: lavender; /* rgb(247, 135, 153)*/
+   text-overflow: ellipsis;
+   overflow: hidden;
+   white-space: nowrap;
+
+   text-shadow: 0px 0px 2px rgb(255, 90, 117);
+
+}
+.smz-nav-div {
+   position: static;
+
+   display: block;
+   justify-content: center;
+   align-items: center;
+  /* flex-basis: 25%; */
+
+   text-overflow: ellipsis;
+   text-align: center;
+   overflow: hidden;
+   white-space: nowrap;
+
+
+}
+
+
+.smz-header--wrap--img {
+   position: static;
+}
+.smz-header--wrap--img-background {
+   position: fixed;
+   z-index: -1;
+
+   height: calc(100vh - 48px);
+   width: 100vw;
+
+   background-image: url('../preview/previewFolder/anime/672167.jpg');
+   background-attachment: fixed;
+   background-position: center;
+   background-repeat: no-repeat;
+   background-size: cover;
+   content-visibility: auto;
+
+   color: transparent;
+   overflow: hidden;
+
+   /* filter:  saturate(1.5) blur(10px); */
+}
+.smz-header--wrap--img-text {
+   position: relative;
+   z-index: 0;
+
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+
+   height: calc(100vh - 48px);
+   width: 100vw;
+   
+   padding: 40px 20vw 96px;
+   color: aliceblue; /* pink rgba(61,135,204,1) rgba(253,197,61,255) rgba(250,220,149,255)*/
+   font-size: 1.5em;
+   text-shadow: 5px 5px 2px rgb(108,78,84); /* rgb(255, 144, 162) rgba(61,135,204,1)*/
+   
+}
+
+
+.smz-anchor {
+   position: static;
+   z-index: 0;
+
+   display: block;
+   background: lavender;
+
+   padding: 40px 20vw;
+   color: black;
+}
+.smz-anchor-header {
+   position: static;
+   z-index: 0;
+
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+
+   padding: 60px 0 ;
+   font-size: 2em;
+   text-align: center;
+
+}
+.smz-anchor-link {
+   position: static;
+   z-index: 0;
+
+   display: block;
+   text-align: center;
+   
+   padding: 40px;
+   color: rgb(114, 106, 100);
+   text-shadow: 1px 1px 1px lavender;
+   font-size: 1em;
+
+   border: dotted 2px rgb(92, 87, 83);
+}
+
+.smz-anchor-link:link {
+   color: rgb(114, 106, 100);
+}
+.smz-anchor-link:visited {
+   color: rgb(114, 106, 100);
+}
+.smz-anchor-link:hover {
+   color: lavenderblush;
+   background: rgba(14,143,214,0.1);
+}
+.smz-anchor-link:active {
+   color: rgb(114, 106, 100);
+}
+
+.smz-anchor-link---second {
+   position: static;
+   z-index: 0;
+
+   display: block;
+   text-align: center;
+   
+   padding: 24px ;
+   color: pink;
+   text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.534);
+   font-size: 1em;
+}
+.smz-removedecorate__anchor-link {
+   text-decoration: none;
+}
+.smz-removedecorate__anchor-link---second {
+   text-decoration: none;
+   margin: 0 30px; /* it's display flex */
+}
+.smz-removedecorate__anchor-link:link {
+   color: #8AC7DB;
+}
+.smz-removedecorate__anchor-link:visited {
+   color: #8AC7DB;
+}
+.smz-removedecorate__anchor-link:hover {
+   color: lavenderblush;
+   background: rgba(14,143,214,0.1);
+}
+.smz-removedecorate__anchor-link:active {
+   color: #8AC7DB;
+}
+
+
+.smz-footer {
+   position: static;
+   z-index: 0;
+
+   display: block;
+
+   padding: 5vw;
+   background: rgb(61, 68, 68);
+   color: lavenderblush;
+
+}
+
+/* footer frameworks */
+
+
+.smz-footer---framework---p {
+   position: static;
+   z-index: 0;
+
+   display: block;
+   text-align: center;
+
+   margin: 20px;
+}
+.smz-footer---framework---specialthanks {
+   position: static;
+   z-index: 0;
+
+   display: block;
+   text-align: right;
+
+   padding: 24px;
+   border: solid 1px lavender;
+   border-radius: 4px;
+}
+
+/* footer ::selection */ 
+
+.smz-footer---framework---p::selection {
+   color: rgb(210, 234, 250) ;
+}
+.smz-footer---framework---specialthanks::selection {
+   color: pink;
+}
+
+/* lucia kawaii */
+
+.lucia {
+   position: fixed;
+   z-index: 111;
+   bottom: 0;
+   left: 0;
+
+   display: block;
+   
+   
+   
+}
+.imglucia {
+   height: 120px;
+}
+
+/* rippleeffect */
+.rippleeffect {
+   position: fixed;
+   z-index: 1000;
+   background-color: lavender;
+   transform: translate(-50%,-50%);
+   pointer-events: none;
+   border-radius: 50%;
+   animation: rippleeffect 1s linear forwards;
+}
+@keyframes rippleeffect {
+   from {
+       height: 0px;
+       width: 0px;
+       opacity: 0.5;
+   }
+   to {
+       height: 5000px;
+       width: 5000px;
+       opacity: 0;
+
+   }
+}

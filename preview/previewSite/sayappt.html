@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="reference">
+    <meta property="og:description" content="reference">
+    <meta property="og:image" content="../img/yamete_noise_with_schooluniform.png">
+    <title> sayappt </title>
+    <style>
+        *::-webkit-scrollbar {
+            width: 10px;
+        }
+        *::selection {
+            display: none;
+        }
+        *::-webkit-scrollbar-thumb {
+            background-color: #b382ba;
+            border-radius: 2px;
+            border: solid 1px lavender;
+        }
+        *::-webkit-scrollbar-track {
+            background-color: lavender;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: 0;
+            overflow-x: hidden;
+        }
+        body {
+            position: static;
+            z-index: auto;
+            
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: lavender;
+
+            height: 100vh;
+            width: 100vw;
+        }
+        .img-frame {
+            position: static;
+            z-index: auto;
+
+            display: block;
+            margin: 0 auto;
+
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        .nav {
+            position: fixed;
+            z-index: 10;
+            left: 0;
+            top: 0;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        .prev , .next , .rotate , .download , .changeViewMode , .index , .nav_view {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 2px;
+            border-radius: 100%;
+            border: solid 0px;
+            height: 5vw;
+            width: 5vw;
+            min-height: 40px;
+            min-width: 40px;
+            font-size: 3vw;
+            font-weight: 1000;
+            font-family: monospace;
+            overflow: hidden;
+            text-align: center;
+            text-shadow: 2px 2px 2px #0ffbf9, -2px -2px 2px #cc0f39;
+
+            background-color: rgba(181, 181, 181, 0.5);
+            color: black;
+
+            cursor: pointer;
+        }
+        .prev:hover , .next:hover , .rotate:hover , .download:hover , .changeViewMode:hover , .index:hover , .nav_view:hover {
+            color: lavender;
+        }
+        .index:focus {
+            outline: none;
+        }
+
+        /* all view */
+        .allView {
+            position: static;
+            z-index: auto;
+
+            display: none;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto;
+        }
+        .viewFrame {
+            position: static;
+            z-index: auto;
+
+            display: block;
+            content-visibility: auto;
+            margin: 10px;
+            border: solid 1px rgb(216, 103, 216);
+            width: 200px;
+        }
+    </style>
+</head>
+<body>
+    <div class="allView">
+
+    </div>
+    <img class="img-frame" alt="screenshotViewWasEmpty">
+    <div class="nav">
+        <div class="prev">
+            &lt;
+        </div>
+        <div class="next">
+            &gt;
+        </div>
+        <div class="rotate">
+            &#10608;
+        </div>
+        <a class="download" download>
+            &darr;
+        </a>
+        <div class="changeViewMode">
+            v
+        </div>
+        <input type="text" class="index">
+        <div class="nav_view">
+            &#9776;
+        </div>
+    </div>
+</body>
+<script>
+    const folderViewName = "../previewFolder/sayappt/";
+
+    const imagelist = [
+    "Screenshot (269).png",
+    "Screenshot (270).png",
+    "Screenshot (271).png",
+    "Screenshot (272).png",
+    "Screenshot (273).png",
+    "Screenshot (274).png",
+    "Screenshot (275).png",
+    "Screenshot (276).png",
+    "Screenshot (277).png",
+    "Screenshot (278).png",
+    "Screenshot (279).png",
+    "Screenshot (280).png",
+    "Screenshot (281).png",
+    "Screenshot (282).png"
+    ];
+
+    //rotateView
+    let imageRotation = 0;
+    //changeView
+    let viewMode = false;
+    //imageIndex
+    let iterateImage = 0;
+    //navView
+    let navShow = true
+    
+    const allView = document.querySelector(".allView")
+    let screenshotView = document.querySelector(".img-frame")
+    screenshotView.setAttribute("draggable",false);
+
+    const next = document.querySelector(".next")
+    const prev = document.querySelector(".prev")
+    const rotate = document.querySelector(".rotate")
+    const download = document.querySelector(".download")
+    const changeViewMode = document.querySelector(".changeViewMode")
+    const index = document.querySelector(".index")
+    const nav_view = document.querySelector(".nav_view")
+
+    index.setAttribute("maxlength",imagelist.length.toString().length)
+    index.setAttribute("value",iterateImage)
+    screenshotView.setAttribute("src",folderViewName + imagelist[iterateImage]);
+
+    for(let allViewIterate = 0; allViewIterate < imagelist.length; ++allViewIterate){
+        var createView = document.createElement("img");
+        createView.setAttribute("class","viewFrame");
+        createView.setAttribute("src",folderViewName + imagelist[allViewIterate]);
+        createView.addEventListener("click", (clickView) => {
+            changeView()
+            chooseView(allViewIterate)
+        })
+        allView.appendChild(createView);
+    }
+    function chooseView(currentIndex) {
+        iterateImage = currentIndex
+        index.value = iterateImage
+        screenshotView.setAttribute("src",folderViewName + imagelist[currentIndex]);
+        if(navShow == false){
+            nav_view.textContent = iterateImage
+        }
+    }
+    function nextView() {
+        if(imagelist[iterateImage] == imagelist[imagelist.length - 1]){
+            iterateImage = imagelist.length - 1;
+        }
+        else {
+            iterateImage += 1;
+            screenshotView.setAttribute("src",folderViewName + imagelist[iterateImage]);
+        }
+        if(navShow == false){
+            nav_view.textContent = iterateImage
+        }
+        index.value = iterateImage
+    }
+    function returnView() {
+        if(iterateImage <= 0){
+            iterateImage = 0;
+            screenshotView.setAttribute("src",folderViewName + imagelist[iterateImage])
+        }
+        else {
+            iterateImage -= 1;
+            screenshotView.setAttribute("src",folderViewName + imagelist[iterateImage])
+        }
+        if(navShow == false){
+            nav_view.textContent = iterateImage
+        }
+        index.value = iterateImage
+        
+    }
+    function rotateView() {
+        imageRotation += 90;
+        screenshotView.style.transform = `rotateZ(${imageRotation}deg)`;
+    }
+    function changeView() {
+        if(viewMode == true){
+            screenshotView.style.display = "block";
+            allView.style.display = "none";
+
+            viewMode = false;
+        }
+        else {
+            viewMode = true;
+            screenshotView.style.display = "none";
+            allView.style.display = "flex";
+        }
+    }
+    function downloadView(){
+        alert("Just download it manually i'm tired");
+    }
+    function inputView() {
+        if(index.value > imagelist.length - 1){
+            iterateImage = imagelist.length - 1
+            index.value = imagelist.length - 1
+            screenshotView.setAttribute("src",folderViewName + imagelist[iterateImage])
+        }
+        else if (index.value == (undefined || null || "")){
+            iterateImage = 0
+            screenshotView.setAttribute("src",folderViewName + imagelist[iterateImage])
+        }
+        else {
+            iterateImage = parseInt(index.value)
+            screenshotView.setAttribute("src",folderViewName + imagelist[iterateImage])
+        }
+    }
+    function arrowKeyEvent(keyboardEvent) {
+        if(keyboardEvent.keyCode == 37) returnView()
+        if(keyboardEvent.keyCode == 39) nextView()
+    }
+    function navView() {
+        listOfView = [next,prev,rotate,download,changeViewMode,index]
+        if(navShow == true){
+            for (i of listOfView){
+                i.style.display = 'none'
+                navShow = false
+
+                currentTimeout = setTimeout(() => {
+                    nav_view.style.opacity = .2
+                    nav_view.textContent = iterateImage
+                }, 1000);
+            }
+        }
+        else {
+            for (i of listOfView){
+                i.style.display = 'flex'
+                navShow = true
+
+                setTimeout(() => {
+                    nav_view.style.opacity = 1
+                    nav_view.innerHTML = '&#9776;'
+                }, 1000);
+            }
+        }
+    }
+
+    next.addEventListener('click',() => {
+        nextView()
+    })
+    prev.addEventListener('click',() => {
+        returnView()
+    })
+    rotate.addEventListener('click',() => {
+        rotateView()
+    })
+    download.addEventListener('click',() => {
+        downloadView()
+    })
+    changeViewMode.addEventListener('click',() => {
+        changeView()
+    })
+    index.addEventListener('keyup', () => {
+        inputView()
+    })
+    nav_view.addEventListener('click', () => {
+        navView()
+    })
+    window.addEventListener("keydown", (keyboardEvent) => {
+        arrowKeyEvent(keyboardEvent)
+    })
+    //TouchClick update
+    screenshotView.addEventListener('click', (touchevent) => {
+        TouchClick(touchevent.screenX)
+    })
+    function TouchClick(touchevent) {
+        if(touchevent < innerWidth / 2) returnView()
+        if(touchevent > innerWidth / 2) nextView()
+    }
+</script>
+</html>

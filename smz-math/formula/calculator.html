@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>calculator</title>
+</head>
+<body>
+    <input type="text" class="display" autofocus="autofocus">
+    <div class="value"></div>
+    <script>
+        const display = document.querySelector(".display")
+        const vlue = document.querySelector(".value")
+        let displayValue = ""
+
+        function addChar(char){
+            displayValue = char
+        }
+        function subChar(char){
+
+        }
+        display.addEventListener('keyup', () => {
+            addChar(display.value)
+            vlue.textContent = displayValue
+        })
+    </script>
+</body>
+</html>

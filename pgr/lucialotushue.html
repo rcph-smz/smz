@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>lucialotus</title>
+  <style type="text/css" media="all">
+     * {
+       margin: 0;
+       padding: 0;
+       box-sizing: border-box;
+     }
+     body {
+       display: flex;
+       flex-direction: column;
+       justify-content: center;
+       align-items: center;
+       
+       background: lavender;
+       height: 100vh;
+       width: 100vw;
+     }
+     .lucia {
+       position: static;
+       z-index: 0;
+       
+       display: block;
+       margin: 0 auto;
+       width: 100vw;
+
+     }
+     .inp {
+       position: static;
+       z-index: 0;
+       
+       display: block;
+       margin: 0 auto;
+       width: 100vw;
+       padding: 18px;
+       font-size: 1em ;
+       text-align: center;
+       border: solid 1px pink;
+       background: aliceblue;
+     }
+  </style>
+</head>
+<body>
+  <img src="lucialotus.jpg" class="lucia" alt="lucialotus" />
+  <input class="inp" type="text" />
+  <script type="text/javascript" charset="utf-8">
+    const lucia = document.querySelector('.lucia');
+    document.querySelector('.inp').placeholder = 'enter a number between -1 and 361 ' ;
+    const rotate = function (trigger) {
+      lucia.style.cssText = `filter: hue-rotate(${trigger}deg);`;
+     // return 'hue rotate has been execute' ;
+    }
+    
+    lucia.addEventListener('click', function () {
+      inp = String(document.querySelector('.inp').value);
+      rotate(inp);
+    });
+    window.addEventListener('keydown', function () {
+      inp = String(document.querySelector('.inp').value);
+      rotate(inp);
+    });
+    window.addEventListener('keyup', function () {
+      inp = String(document.querySelector('.inp').value);
+      rotate(inp);
+    });
+    
+  </script>
+</body>
+</html>

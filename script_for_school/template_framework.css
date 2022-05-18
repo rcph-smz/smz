@@ -1,0 +1,45 @@
+  * {
+    margin: 0;
+    padding: 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+  body {
+    background: lavender;
+  }
+    p {
+      font-family: Monospace;
+      font-size: 15px;
+      text-indent: 50px;
+      margin: 20px 10px;
+      line-height: 30px;
+      
+    }
+    h1 {
+      display: block;
+      padding: 20px;
+      text-align: center;
+      color: lavender;
+      background: rgba(0,0,0,0.6);
+      text-shadow: 1px 1px 1px black;
+    }
+    
+    #keys {
+      box-sizing: border-box;
+      border: solid 1px black;
+      padding: 20px 0;
+      line-height: 20px;
+      
+      background: rgba(14,143,214,0.1);
+    }
+    #red {
+      box-sizing: border-box;
+      border: solid 1px black;
+      padding: 20px 0;
+      line-height: 20px;
+      text-shadow: 1px 1px 1px black;
+      background: rgba(255,0,0,0.6);
+      color: lavender ;
+      text-align: center;
+    }

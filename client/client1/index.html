@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jem Blog</title>
+    <style>
+        @keyframes animateLink {
+            from {
+                color: initial;
+            }
+            to {
+                color: aliceblue;
+                background-color: rgba(14,214,244,0.2);
+            }
+        }
+        @font-face {
+            font-family: "MochiyPopOne";
+            src: url("fonts/MochiyPopOne-Regular.ttf");
+        }
+        @font-face {
+            font-family: "Lato-Black";
+            src: url("fonts/Lato-Black.ttf");
+        }
+        *::-webkit-scrollbar {
+            width: 8px;
+        }
+        *::-webkit-scrollbar-thumb {
+            background-color: black;
+            border-radius: 10px;
+            border: solid 1px aliceblue;
+        }
+        *::-webkit-scrollbar-track {
+            background-color: azure;
+        }
+        *::selection {
+            background-color: rgba(0, 255, 255, 0.123);
+            color: rgb(41, 41, 49);
+        }
+        .footBlock::selection {
+            
+            background-color: rgba(49, 209, 209, 0.446);
+            color: lavender;
+        }
+        .footHeader::selection {
+            
+            background-color: rgba(49, 209, 209, 0.446);
+            color: lavender;
+        }
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            font-family: "Lato-Black";
+        }
+        body {
+            background-color: lavender;
+            overflow-x: hidden;
+        }
+        .header {
+            position: static;
+            z-index: auto;
+
+            display: flex;
+            align-items: center;
+            padding: 20px 10vw;
+
+            grid-area: header;
+
+            text-transform: capitalize;
+            font-size: 1.5em;
+            background-color: lavender;
+
+        }
+        .profile {
+            position: static;
+            z-index: auto;
+
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            /* grid-area: profile; */
+
+            padding: 40px;
+            background-color: rgba(0, 0, 0, 0.645);
+        }
+        .imageView {
+            position: relative; 
+            z-index: auto;
+            transform: translateY(120px) translateX(calc(-40px + 5vw));
+            
+            width: 20vw;
+            min-width: 150px;
+            max-width: 200px;
+
+            border-radius: 10px 20%;
+            border: dotted 2px gray;
+        }
+        .sideprofile {
+            position: relative;
+            z-index: auto;
+
+            grid-area: sideprofile;
+            
+            background-image: url('img/background.jpg');
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: auto;
+            background-position: 40% 40%;
+
+            color: lavender;
+        }
+        .content {
+            position: static;
+            z-index: auto;
+
+            padding: 150px 5vw 150px;
+            margin: 24px auto 24px;
+            line-height: 1.5em;
+            background-color: lavender;
+            font-family: calibri;
+
+            width: 800px;
+        }
+        .sidecontent {
+            position: static;
+            z-index: auto;
+
+            display: flex;
+            justify-content: flex-start;
+            align-items: flex-start;
+            flex-direction: column;
+            margin: 24px auto 24px;
+            line-height: 1.5em;
+            background-color: lavender;
+            font-family: calibri;
+
+            align-self: stretch;
+            flex-grow: .86; 
+        }
+        
+        .wrapper > div {
+
+            border: solid 1px black;
+
+        }
+        .wrapper {
+            position: static;
+            z-index: auto;
+
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            grid-template-areas: 
+            "header header header header"
+            "sideprofile sideprofile sideprofile sideprofile"
+            ;
+        }
+        .contentWrapper > div {
+
+            border: solid 1px black;
+        }
+        .contentWrapper {
+            position: static;
+            z-index: auto;
+
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+
+            width: 100vw;
+        }
+        .contactHeader {
+            position: static;
+            z-index: auto;
+
+            margin: 24px auto 24px;
+            line-height: 1.5em;
+            text-align: center;
+            text-transform: capitalize;
+            padding: 20px 0;
+            border-radius: 100px 0 0 100px;
+            font-family: "MochiyPopOne";
+
+            /* padding: 20px; */
+            border: solid 1px black;
+            width: 80%;
+            text-overflow: ellipsis;
+            overflow: hidden;
+
+
+        }
+        .contactList {
+            position: static;
+            z-index: auto;
+
+            margin: 48px auto 24px;
+            line-height: 1.5em;
+            text-align: center;
+            text-transform: capitalize;
+            font-family: monospace;
+            font-size: 1.4em;
+
+            /* padding: 20px; */
+            border: solid 1px black;
+            width: 80%;
+            text-overflow: ellipsis;
+            overflow: hidden;
+        }
+        .restrictImg {
+            position: absolute;
+            z-index: auto;
+            transform: translateX(calc(-60px + -1vw)) translateY(-56px);
+
+            width: 5vw;
+            max-width: 50px;
+            min-width: 40px;
+        }
+        .footer {
+            position: static;
+            z-index: auto;
+            
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2vw;
+
+            background-color: rgba(0, 0, 0, 0.741);
+        }
+        .footerContain {
+            position: static;
+            z-index: auto;
+
+            display: block;
+            font-size: 1em;
+            
+            color: aliceblue;
+            margin: 20px 60px;
+
+        }
+        .footerHeader {
+            position: static;
+            z-index: auto;
+
+            display: block;
+            font-size: 1.2em;
+            text-transform: capitalize;
+            
+            color: aliceblue;
+            text-align: center;
+            font-family: "Lato-Black";
+
+        }
+        .footerBorder {
+            position: static;
+            z-index: auto;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+
+            border-radius: 0 14px 0;
+            border: solid 2px aliceblue;
+            width: 95vw;
+            padding: 5vw;
+        }
+        .footBlock {
+            display: block;
+
+            margin: 10px auto;
+            font-family: monospace;
+        }
+        a {
+            text-decoration: none;
+        }
+        a:link {
+            color: black;
+        }
+        a:visited {
+            color: black;
+        }
+        a:hover {
+            animation: animateLink .2s ease forwards;
+        }
+        a:active {
+            color: black;
+        }
+
+        .iframeclient {
+            position: static;
+            z-index: auto;
+
+            display: block;
+            height: 100vh;
+            width: 100vw;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="header">
+            Jem's Blog
+        </div>
+        <div class="sideprofile">
+            <div class="profile">
+                <img src="img/jempro.jpg" class="imageView">
+            </div>
+        </div>
+    </div>
+    <div class="contentWrapper">
+        <div class="content">
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ex a enim saepe et inventore! Maiores, iusto? Maxime amet natus eaque magnam consectetur vitae dignissimos voluptate quibusdam voluptatibus ad. Sed molestiae fuga, aliquam explicabo quas, sit optio sapiente dolore labore laboriosam laborum repellat commodi eum sint nihil adipisci tempore cupiditate voluptates? Quos voluptas ea ut, at facilis quia architecto harum iusto deleniti laboriosam praesentium ab vero error placeat, omnis est non delectus deserunt nam tempora explicabo possimus. Amet, quos error? Quas esse quam, sunt molestias doloremque perferendis ut aut laboriosam perspiciatis libero omnis, deleniti, odit sint maxime iste temporibus quisquam inventore aspernatur cupiditate nostrum unde quo neque explicabo. Adipisci accusamus commodi, tempore, ipsum porro iste dignissimos, blanditiis sunt amet veniam praesentium nostrum? Similique maiores odit dolorum aut, vero, nulla vitae dolores commodi numquam deleniti corporis! Temporibus culpa cumque distinctio maxime deserunt.
+        </div>
+        <div class="sidecontent">
+            <div class="contactHeader">
+                Contact
+            </div>
+            <a class="contactList" href="https://www.facebook.com/Jem.123abc">
+                facebook <img src="img/fb.png" alt="fb" class="restrictImg">
+            </a>
+            <a class="contactList" href="https://www.facebook.com/Jem.123abc">
+                instagram <img src="img/insta.png" alt="insta" class="restrictImg">
+            </a>
+        </div>
+    </div>
+    <iframe src="iframeclient1.html" frameborder="0" class="iframeclient"></iframe>
+    <div class="footer">
+        <div class="footerBorder">
+            <div class="footerContain">
+                <div class="footHeader">
+                    More Info About Site
+                </div>
+                <div class="footBlock">
+                    Webdesign by : rcph
+                </div>
+                <div class="footBlock">
+                    &copy; Copyright by : rcph
+                </div>
+                <div class="footBlock">
+                    Email : "no email"
+                </div>
+                <div class="footBlock">
+                    Client : Jem 
+                </div>
+            </div>
+            <div class="footerContain">
+                <div class="footHeader">
+                    Company
+                </div>
+                <div class="footBlock">
+                    rcph-smz
+                </div>
+                <div class="footBlock">
+                    brought to you by : ShanaOil
+                </div>
+            </div>
+            <div class="footerContain">
+                <div class="footHeader">
+                    Good Bye !!!!
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

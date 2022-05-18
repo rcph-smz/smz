@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>template website</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hachi+Maru+Pop&family=Mochiy+Pop+One&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Mochiy Pop One','Hachi Maru Pop', 'Times New Roman', monospace;
+        }
+        *::selection {
+            background: #ab7675;
+            color: lavender;
+        }
+        *::-webkit-scrollbar {
+            display: none;
+        }
+        .widthindicator {
+            position: absolute;
+            z-index: 9999;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 10vw;
+            max-height: 40px;
+            width: 10vw;
+            padding: 2vw;
+ 
+            background: rgba(0,255,0,0.5);
+
+        }
+        body {
+            background: lavender;
+        }
+        .all-wrapper {
+            position: fixed;
+            z-index: 0;
+
+            display: block;
+
+            height: 100vh;
+            width: 100vw;
+
+            border: solid 1px black;
+            border-radius: 20px;
+
+            overflow: scroll;
+        }
+        /* contents */
+
+        .background {
+          position: absolute;
+          display: none; 
+        }
+        .sidebar {
+          position: absolute;
+          display: none;
+ 
+        }
+        .contents {
+          position: relative;
+          z-index: 1;
+
+        }
+
+        /* another chilren of contents xd */
+
+        .intro {
+          
+          height: 100vh;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+        }
+        /* child of intro */
+        .animeBackground {
+          position: fixed;
+          z-index: 2;
+
+          background: linear-gradient(45deg,#fea693,#1f2b37);
+          background-image: url('../img/animeBg.jpg');
+          background-attachment: fixed;
+          background-position: center 70%;
+          background-size: cover;
+          background-repeat: no-repeat;
+
+          font-family: 'Hachi Maru Pop','Times New Roman',monospace;
+          font-size: 5vw;
+          height: 100vh;
+          width: 100vw;
+          content-visibility: auto;
+
+          filter: blur(10px);
+          
+        }
+        .scrollwrap {
+       
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+          position: relative;
+          z-index: 3;
+
+          height: 100vh;
+          width: 100vw;
+
+
+         
+        }
+        .animeBackgroundText {
+          font-family: 'Hachi Maru Pop','Times New Roman',monospace;
+          font-size: 5vw;
+
+          /* flex was from parent scrollwrap */
+          justify-content: center;
+          align-items: center;
+ 
+          color: #fbb1ae;
+          text-shadow: 1px 1px 1px black;
+
+          position: relative;
+          z-index: 3;
+
+          padding: 20px;
+          border-radius: 2px;
+          background: rgba(251, 177, 174, 0.2);
+          box-shadow: 0px 0px 30px pink;
+        }
+        .all {
+          position: relative;
+          z-index: 3;
+          background: linear-gradient(45deg,#fea693 ,#1f2b37 );
+         
+        }
+        .introText {
+            position: relative;
+            z-index: 3;
+            
+            padding: 100px 20vw;
+            line-height: 2em;
+            color: lavender;
+
+            text-shadow:1px 1px 1px black;
+        }
+        .animeImages {
+            position: relative;
+            z-index: 3;
+
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+
+            margin: 20px;
+
+        }
+        .imageLayout {
+            margin: 10px;  
+            border: solid 1px red;
+            width: 200px;
+            content-visibility: auto;
+        }
+        
+
+
+
+
+
+
+
+
+
+        /* framework */
+
+        .withmargin {
+            margin: 40px 0;
+        }
+
+    </style>
+</head>
+<body id="body">
+    <div class="all-wrapper">
+       <div class="background">
+        
+       </div>
+       <div class="sidebar">
+
+       </div>
+       <div class="contents">
+          <div class="intro">
+            <div class="animeBackground">
+             
+            </div>
+            <div class="scrollwrap">
+              <div class="animeBackgroundText">
+                  "Anime Background"
+              </div>
+            </div>
+          </div>
+          <div class="all">
+             <div class="introText">
+                <p class="withmargin">
+                 私のバックグラウンドライブラリへようこそ、
+                このライブラリは私のWeb開発の練習にすぎませんでした。
+                
+                理解していただきありがとうございます、
+                </p>
+                <p class="withmargin">
+                    Welcome to my background library,
+                    This library was just my web development practice.
+                    
+                    Thank you for understanding,
+                </p>
+             </div>
+             <div class="animeImages">
+                
+             </div>
+          </div>
+       </div>
+    </div>
+    <script>
+    const nodeWidthIndicator = document.createElement('div') ;
+    const widthindicator = document.body.appendChild(nodeWidthIndicator);
+    widthindicator.setAttribute('class','widthindicator');
+    widthindicator.innerText = innerWidth ;
+    window.addEventListener('resize', () => {
+        widthindicator.innerText = innerWidth ;
+    });
+    //looping images
+    
+    const imageLoop = document.querySelector('.animeImages');
+
+    const imageList = []
+
+  for (let counter = 0; counter < imageList.length ; ++counter) {
+        var createImageLoop = document.createElement('img');
+        createImageLoop.setAttribute('class','imageLayout');
+        createImageLoop.setAttribute('src',imageList[counter]);
+        imageLoop.appendChild(createImageLoop);
+  }
+
+    </script>
+</body>
+</html>

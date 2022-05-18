@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="reference">
+    <meta property="og:description" content="reference">
+    <meta property="og:image" content="../img/yamete_noise_with_schooluniform.png">
+    <title> anime </title>
+    <style>
+        *::-webkit-scrollbar {
+            width: 10px;
+        }
+        *::selection {
+            display: none;
+        }
+        *::-webkit-scrollbar-thumb {
+            background-color: #b382ba;
+            border-radius: 2px;
+            border: solid 1px lavender;
+        }
+        *::-webkit-scrollbar-track {
+            background-color: lavender;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: 0;
+            overflow-x: hidden;
+        }
+        body {
+            position: static;
+            z-index: auto;
+            
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: lavender;
+
+            height: 100vh;
+            width: 100vw;
+        }
+        .img-frame {
+            position: static;
+            z-index: auto;
+
+            display: block;
+            margin: 0 auto;
+
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        .nav {
+            position: fixed;
+            z-index: 10;
+            left: 0;
+            top: 0;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        .prev , .next , .rotate , .download , .changeViewMode , .index , .nav_view {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 2px;
+            border-radius: 100%;
+            border: solid 0px;
+            height: 5vw;
+            width: 5vw;
+            min-height: 40px;
+            min-width: 40px;
+            font-size: 3vw;
+            font-weight: 1000;
+            font-family: monospace;
+            overflow: hidden;
+            text-align: center;
+            text-shadow: 2px 2px 2px #0ffbf9, -2px -2px 2px #cc0f39;
+
+            background-color: rgba(181, 181, 181, 0.5);
+            color: black;
+
+            cursor: pointer;
+        }
+        .prev:hover , .next:hover , .rotate:hover , .download:hover , .changeViewMode:hover , .index:hover , .nav_view:hover {
+            color: lavender;
+        }
+        .index:focus {
+            outline: none;
+        }
+
+        /* all view */
+        .allView {
+            position: static;
+            z-index: auto;
+
+            display: none;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto;
+        }
+        .viewFrame {
+            position: static;
+            z-index: auto;
+
+            display: block;
+            content-visibility: auto;
+            margin: 10px;
+            border: solid 1px rgb(216, 103, 216);
+            width: 200px;
+        }
+    </style>
+</head>
+<body>
+    <div class="allView">
+
+    </div>
+    <img class="img-frame" alt="screenshotViewWasEmpty">
+    <div class="nav">
+        <div class="prev">
+            &lt;
+        </div>
+        <div class="next">
+            &gt;
+        </div>
+        <div class="rotate">
+            &#10608;
+        </div>
+        <a class="download" download>
+            &darr;
+        </a>
+        <div class="changeViewMode">
+            v
+        </div>
+        <input type="text" class="index">
+        <div class="nav_view">
+            &#9776;
+        </div>
+    </div>
+</body>
+<script>
+    const folderViewName = "../previewFolder/anime/";
+
+    const imagelist = [
+            "1096686.png",
+            "1140642.jpg",
+            "1182732.png",
+            "1182983.jpg",
+            "1183141.png",
+            "1187718.png",
+            "1191903.jpg",
+            "1194700.png",
+            "1194704.jpg",
+            "1196897.jpg",
+            "1198975.jpg",
+            "1200754.jpg",
+            "1201376.jpg",
+            "1206667.png",
+            "1208090.jpg",
+            "1210072.png",
+            "1212516.png",
+            "1213125.jpg",
+            "1023752.jpg",
+            "1034219.png",
+            "1042399.jpg",
+            "1042400.jpg",
+            "1042584.png",
+            "1073993.jpg",
+            "1080360.png",
+            "1086194.jpg",
+            "1124978.png",
+            "1127047.jpg",
+            "1137852.png",
+            "1161182.jpg",
+            "1186073.jpg",
+            "1186076.jpg",
+            "1194569.jpg",
+            "1194683.jpg",
+            "1194702.png",
+            "1195115.jpg",
+            "1196261.jpg",
+            "1196753.png",
+            "1196898.jpg",
+            "1196899.png",
+            "1196901.png",
+            "1196917.png",
+            "1205269.png",
+            "1210072.png",
+            "1214274.png",
+            "1218592.png",
+            "1221273.png",
+            "1221274.jpg",
+            "1221275.png",
+            "1221276.png",
+            "1221277.png",
+            "1221278.jpg",
+            "1221463.jpg",
+            "875794.jpg",
+            "937258.jpg",
+            "1140587.jpg",
+            "1140589.jpg",
+            "401104.jpg",
+            "402688.jpg",
+            "402689.png",
+            "495844.jpg",
+            "519517.jpg",
+            "531669.png",
+            "548708.png",
+            "569395.png",
+            "576474.jpg",
+            "578573.png",
+            "585820.jpg",
+            "597657.png",
+            "598853.jpg",
+            "672159.jpg",
+            "672165.jpg",
+            "672167.jpg",
+            "672179.png",
+            "674709.jpg",
+            "674710.png",
+            "674711.jpg",
+            "674712.png",
+            "674713.jpg",
+            "674714.jpg",
+            "682324.jpg",
+            "682359.jpg",
+            "682365.jpg",
+            "688004.jpg",
+            "735950.jpg",
+            "735958.png",
+            "735971.jpg",
+            "735975.jpg",
+            "735979.png",
+            "735980.png",
+            "740165.png",
+            "742554.png",
+            "794310.jpg",
+            "797899.png",
+            "801638.png",
+            "820043.jpg"
+    ];
+
+    //rotateView
+    let imageRotation = 0;
+    //changeView
+    let viewMode = false;
+    //imageIndex
+    let iterateImage = 0;
+    //navView
+    let navShow = true
+    
+    const allView = document.querySelector(".allView")
+    let screenshotView = document.querySelector(".img-frame")
+    screenshotView.setAttribute("draggable",false);
+
+    const next = document.querySelector(".next")
+    const prev = document.querySelector(".prev")
+    const rotate = document.querySelector(".rotate")
+    const download = document.querySelector(".download")
+    const changeViewMode = document.querySelector(".changeViewMode")
+    const index = document.querySelector(".index")
+    const nav_view = document.querySelector(".nav_view")
+
+    index.setAttribute("maxlength",imagelist.length.toString().length)
+    index.setAttribute("value",iterateImage)
+    screenshotView.setAttribute("src",folderViewName + imagelist[iterateImage]);
+
+    for(let allViewIterate = 0; allViewIterate < imagelist.length; ++allViewIterate){
+        var createView = document.createElement("img");
+        createView.setAttribute("class","viewFrame");
+        createView.setAttribute("src",folderViewName + imagelist[allViewIterate]);
+        createView.addEventListener("click", (clickView) => {
+            changeView()
+            chooseView(allViewIterate)
+        })
+        allView.appendChild(createView);
+    }
+    function chooseView(currentIndex) {
+        iterateImage = currentIndex
+        index.value = iterateImage
+        screenshotView.setAttribute("src",folderViewName + imagelist[currentIndex]);
+        if(navShow == false){
+            nav_view.textContent = iterateImage
+        }
+    }
+    function nextView() {
+        if(imagelist[iterateImage] == imagelist[imagelist.length - 1]){
+            iterateImage = imagelist.length - 1;
+        }
+        else {
+            iterateImage += 1;
+            screenshotView.setAttribute("src",folderViewName + imagelist[iterateImage]);
+        }
+        if(navShow == false){
+            nav_view.textContent = iterateImage
+        }
+        index.value = iterateImage
+    }
+    function returnView() {
+        if(iterateImage <= 0){
+            iterateImage = 0;
+            screenshotView.setAttribute("src",folderViewName + imagelist[iterateImage])
+        }
+        else {
+            iterateImage -= 1;
+            screenshotView.setAttribute("src",folderViewName + imagelist[iterateImage])
+        }
+        if(navShow == false){
+            nav_view.textContent = iterateImage
+        }
+        index.value = iterateImage
+        
+    }
+    function rotateView() {
+        imageRotation += 90;
+        screenshotView.style.transform = `rotateZ(${imageRotation}deg)`;
+    }
+    function changeView() {
+        if(viewMode == true){
+            screenshotView.style.display = "block";
+            allView.style.display = "none";
+
+            viewMode = false;
+        }
+        else {
+            viewMode = true;
+            screenshotView.style.display = "none";
+            allView.style.display = "flex";
+        }
+    }
+    function downloadView(){
+        alert("Just download it manually i'm tired");
+    }
+    function inputView() {
+        if(index.value > imagelist.length - 1){
+            iterateImage = imagelist.length - 1
+            index.value = imagelist.length - 1
+            screenshotView.setAttribute("src",folderViewName + imagelist[iterateImage])
+        }
+        else if (index.value == (undefined || null || "")){
+            iterateImage = 0
+            screenshotView.setAttribute("src",folderViewName + imagelist[iterateImage])
+        }
+        else {
+            iterateImage = parseInt(index.value)
+            screenshotView.setAttribute("src",folderViewName + imagelist[iterateImage])
+        }
+    }
+    function arrowKeyEvent(keyboardEvent) {
+        if(keyboardEvent.keyCode == 37) returnView()
+        if(keyboardEvent.keyCode == 39) nextView()
+    }
+    function navView() {
+        listOfView = [next,prev,rotate,download,changeViewMode,index]
+        if(navShow == true){
+            for (i of listOfView){
+                i.style.display = 'none'
+                navShow = false
+
+                currentTimeout = setTimeout(() => {
+                    nav_view.style.opacity = .2
+                    nav_view.textContent = iterateImage
+                }, 1000);
+            }
+        }
+        else {
+            for (i of listOfView){
+                i.style.display = 'flex'
+                navShow = true
+
+                setTimeout(() => {
+                    nav_view.style.opacity = 1
+                    nav_view.innerHTML = '&#9776;'
+                }, 1000);
+            }
+        }
+    }
+
+    next.addEventListener('click',() => {
+        nextView()
+    })
+    prev.addEventListener('click',() => {
+        returnView()
+    })
+    rotate.addEventListener('click',() => {
+        rotateView()
+    })
+    download.addEventListener('click',() => {
+        downloadView()
+    })
+    changeViewMode.addEventListener('click',() => {
+        changeView()
+    })
+    index.addEventListener('keyup', () => {
+        inputView()
+    })
+    nav_view.addEventListener('click', () => {
+        navView()
+    })
+    window.addEventListener("keydown", (keyboardEvent) => {
+        arrowKeyEvent(keyboardEvent)
+    })
+    //TouchClick update
+    screenshotView.addEventListener('click', (touchevent) => {
+        TouchClick(touchevent.screenX)
+    })
+    function TouchClick(touchevent) {
+        if(touchevent < innerWidth / 2) returnView()
+        if(touchevent > innerWidth / 2) nextView()
+    }
+</script>
+</html>

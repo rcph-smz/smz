@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>encrypt FSTF</title>
+    <style>
+        *::-webkit-scrollbar {
+            width: 8px;
+        }
+        *::-webkit-scrollbar-thumb {
+            background-color: #0ffbf9;
+            border-radius: 24px;
+        }
+        *::-webkit-scrollbar-track {
+            background-color: aliceblue;
+        }
+        *::selection {
+            background-color: rgba(0, 0, 0, 0.908);
+            color: #20C20E;
+        }
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background-color: lavender;
+
+            display: block;
+            height: 100vh;
+            width: 100vw;
+        }
+        .header {
+            position: relative;
+            top: 0;
+            z-index: auto;
+
+            display: block;
+            padding: 24px;
+            margin: 0 auto;
+            background-color: rgb(105, 24, 255);
+            color: aliceblue;
+            width: 100vw;
+
+            text-align: center;
+            text-shadow: 2px 2px 2px #0ffbf9 , -2px -2px 1px #cc0f39;
+            box-shadow: 2px 2px 2px #0ffbf9 , -2px -2px 1px #cc0f39;
+
+            font-size: 2em;
+            font-family: monospace;
+            font-weight: 1000;
+            
+
+        }
+        .subheader {
+            position: static;
+            z-index: auto;
+
+            display: block;
+            padding: 24px;
+            text-align: center;
+            margin: 88px auto 12px;
+
+            background-color: rgb(105, 24, 255);
+            color: aliceblue;
+            text-shadow: 2px 2px 2px #0ffbf9 , -2px -2px 1px #cc0f39;
+            box-shadow: 2px 2px 2px #0ffbf9 , -2px -2px 1px #cc0f39;
+            
+            font-size: 1.5em;
+            font-family: monospace;
+            font-weight: 500;
+
+            width: 80vw;
+            border-radius: 0 24px 0 24px;
+
+        }
+        .input {
+            position: static;
+            z-index: auto;
+
+            display: block;
+            padding: 24px;
+            text-align: center;
+            margin: 12px auto;
+
+            background-color: aliceblue;
+            color: black;
+            text-shadow: 1px 1px 1px #0ffbf9 , -1px -1px 1px #cc0f39;
+            
+            font-size: 1.5em;
+            font-family: monospace;
+            font-weight: 500;
+
+            width: 80vw;
+            border: 0px;
+        }
+        .display {
+            position: static;
+            z-index: auto;
+
+            display: block;
+            padding: 44px 24px;
+            text-align: center;
+            margin: 12px auto;
+
+            background-color: aliceblue;
+            color: black;
+            text-shadow: 2px 2px 2px #0ffbf9 , -2px -2px 1px #cc0f39;
+            
+            font-size: 1.5em;
+            font-family: monospace;
+            font-weight: 500;
+
+            width: 80vw;
+            border: 0px;
+
+        }
+        .displayHeader {
+            position: static;
+            z-index: auto;
+
+            display: block;
+            text-align: center;
+            margin: 12px auto;
+
+            background-color: aliceblue;
+            color: black;
+            text-shadow: 2px 2px 2px #0ffbf9 , -2px -2px 1px #cc0f39;
+            
+            font-size: 1.5em;
+            font-family: monospace;
+            font-weight: 500;
+            
+            border: 0px;
+        }
+        .output {
+            position: static;
+            z-index: auto;
+
+            display: block;
+            text-align: center;
+            margin: 12px auto;
+
+            background-color: aliceblue;
+            color: black;
+            text-shadow: 1px 1px 1px #0ffbf9 , -1px -1px 1px #cc0f39;
+            
+            font-size: 1.3em;
+            font-family: monospace;
+            font-weight: 500;
+
+            border: 0px;
+            word-wrap: break-word;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        Encrypt FSTF
+    </header>
+    <header class="subheader">
+        type only letters
+    </header>
+    <input type="text" class="input" autofocus="autofocus">
+    <div class="display">
+        <div class="displayHeader">
+            Output
+        </div>
+        <div class="output">
+
+        </div>
+    </div>
+    <script>
+        const input = document.querySelector(".input")
+        const output = document.querySelector(".output")
+        const encryptFSTFtype = new Audio("Audio/encryptFSTF.wav");
+
+        function runEncrypt() {
+
+            let encryptText = input.value
+
+            let decryptedText = [["A","E","F","H","I","K","L","M","N","T","V","W","X","Y","Z"],["C","O","S"],["D","J","P","Q","U"],["B","G","R"]]
+            let encryptedText = [["_¹","_²","_³","_⁴","_⁵","_⁶","_⁷","_⁸","_⁹","_¹⁰","_¹¹","_¹²","_¹³","_¹⁴","_¹⁵"],["-¹","-²","-³"],[";¹",";²",";³",";⁴",";⁵"],[":¹",":³",":³"]]
+            let convertCharText = ["_","-",";",":"]
+            let decryptCharText = ["FI","S","T","FO"];
+
+            for(let operatingText = 0; operatingText < decryptedText.length; ++operatingText){
+                for(let operatingTextSub = 0; operatingTextSub < decryptedText[operatingText].length ; ++ operatingTextSub){
+                    let globalSearch = new RegExp(decryptedText[operatingText][operatingTextSub],"g")
+                
+                    encryptText = encryptText.toUpperCase().replace(globalSearch,encryptedText[operatingText][operatingTextSub])
+                
+                    console.log(encryptText)
+                }
+            }
+            for(let convertChar = 0; convertChar < convertCharText.length; ++convertChar){
+                let convertSearch = new RegExp(convertCharText[convertChar],"g")
+                encryptText = encryptText.replace(convertSearch,decryptCharText[convertChar])
+                console.log(encryptText);
+            }
+
+            return encryptText
+        }
+        
+        input.addEventListener("keydown", () => {
+            encryptFSTFtype.play();
+        })
+        input.addEventListener("keyup", () => {
+            output.innerHTML = runEncrypt()
+            encryptFSTFtype.play();
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> arts </title>
+    <link rel="icon" href="img/logo.jpg">
+    <style>
+        @font-face {
+            font-family: 'lato';
+            src: url('fonts/Lato-Black.ttf');
+        }
+        
+        @font-face {
+            font-family: 'mochiy';
+            src: url('fonts/MochiyPopOne-Regular.ttf');
+        }
+        @font-face {
+            font-family: 'sora';
+            src: url('fonts/Sora-Light.ttf');
+        }
+        @font-face {
+            font-family: 'pixel';
+            src: url('fonts/PixeloidSansBold-RpeJo.ttf');
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        *::selection {
+            background-color: rgba(236,214,217,255);
+            color: lavender;
+        }
+        *::-webkit-scrollbar {
+            width: 8px;
+        }
+        *::-webkit-scrollbar-thumb {
+            background-color: rgba(236,214,217,255);
+            border: solid 1px aliceblue;
+            border-radius: 10px;
+        }
+        *::-webkit-scrollbar-track {
+            background-color: lavender;
+        }
+        body {
+            background-color: bisque;
+            overflow-x: hidden;
+        }
+        .nav {
+            position: -webkit-sticky;
+            position: sticky;
+            z-index: 10;
+            top: 0;
+
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            flex-wrap: wrap;
+
+            background-color: rgba(236,214,217,1);
+
+
+        }
+        .nav-header {
+            position: static;
+            z-index: auto;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            background-color: rgba(236,214,217,200);
+            color: white; 
+
+            padding: 2vw;
+
+            text-transform: capitalize;
+            font-family: 'sora';
+            font-weight: 1000;
+            font-size: calc(1em + 2vw);
+
+            text-shadow: -2px -2px 2px peachpuff , 2px 2px 2px rgba(214,98,109,255);
+
+            width: 400px;
+
+            max-height: 70px;
+        }
+        .nav-links {
+            position: static;
+            z-index: auto;
+
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            align-self: stretch;
+
+            width: 400px;
+
+            max-height: 70px;
+        }
+        .link {
+            position: static;
+            z-index: auto;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-basis: 20%;
+
+            padding: 1vw;
+
+            text-shadow: 1px 1px 3px rgb(255, 192, 137);
+            text-decoration: none;
+            font-family: 'lato';
+            color: white;
+            background-color:  rgba(236,214,217,200);
+            
+        }
+        .link:link {
+            color: white;
+        }
+        .link:visited {
+            color: white;
+        }
+        .link:hover {
+            color: rgba(236,214,217,255);
+        }
+        .link:active {
+            color:  rgba(236,214,217,255);
+        }
+        /* background and intro */
+        .introduction {
+            position: static;
+            z-index: auto;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .background {
+            position: relative;
+            z-index: -1;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+
+            height: calc(100vh - 70px);
+            width: 800px;
+
+            background-image: url('img/bg.jpg');
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: 0% 40%;
+            background-size: cover;
+        }
+        
+        .background > p {
+            position: inherit;
+            z-index: inherit;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            font-size: 5vw;
+            font-family: 'pixel';
+            color: rgb(255, 206, 146);
+
+            text-shadow: 3px 3px 2px #cc0f39, -2px -2px 2px #0ffbf9;
+
+            margin: 0 10vw;
+
+        }
+        .intro-placeholder {
+            position: relative;
+            z-index: 0;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            height: 100vh;
+            width: 300px;
+        }
+        .intro-content {
+            position: relative;
+            z-index: 1;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+
+            height: 100vh;
+            width: 800px;
+            min-width: 800px;
+            background: linear-gradient(90deg,rgba(255, 228, 196, 0),bisque,bisque,bisque);
+
+            /* border: dotted 3px rgba(169,146,172,255); */
+        }
+        .intro-content > p {
+            position: inherit;
+            z-index: inherit;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            font-size: 1.8em;
+            font-family: 'lato';
+            color: rgba(169,146,172,255) ;
+
+            text-shadow: 2px 2px 2px rgb(255, 206, 146), -1px -1px 2px rgba(214,98,109,255), 3px 3px 1px skyblue;
+
+            margin: 0 calc(200px);
+            white-space: pre;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="nav">
+        <div class="nav-header">
+            whisp_magic
+        </div>
+        <div class="nav-links">
+            <a href="" class="link">
+                status
+            </a>
+            <a href="" class="link">
+                undefined
+            </a>
+            <a href="" class="link">
+                link
+            </a>
+        </div>
+    </div>
+    <div class="introduction">
+        <div class="background">
+            <p>
+               Chill ...
+            </p>
+        </div>
+        <div class="intro-placeholder">
+            <div class="intro-content">
+                <p>---------------------------
+                    
+🌼Dream to possible🌼 
+🌻Artist (beginner)🌻 
+ 🐝🌼🦋(^o^)🦋🌼🐝  
+
+---------------------------
+                </p>
+            </div>
+        </div>
+        
+    </div>
+    
+</body>
+</html>

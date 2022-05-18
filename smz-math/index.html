@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="smz math">
+    <meta property="og:description" content="related to math">
+    <meta property="og:image" content="../img/yamete_noise_with_schooluniform.png">
+    <title>smz-math</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            cursor: default;
+            /* border: solid 1px black; */
+        }
+        *::selection {
+            background-color: rgba(130, 153, 238, 0.202);
+            color: white;
+        }
+        body {
+            background-color: aliceblue;
+        }
+        .header {
+            position: static;
+            z-index: auto;
+
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            width: 100vw;
+        }
+        .header-title {
+            position: static;
+            z-index: auto;
+
+            display: block;
+            
+            padding: 1em;
+            
+            font-size: clamp(1em, 2.5vw, 1.5em);
+            font-family: monospace, Helvetica, sans-serif;
+            font-weight: 500;
+            font-style: oblique;
+            text-transform: capitalize;
+            text-align: center;
+            text-shadow: 2px 2px 1px rgba(255,233,217,255);
+            color: rgba(0, 145, 255, 0.5);
+
+            border: solid 1px rgb(241, 186, 204);
+            border-radius: 7px;
+        }
+        .subheader {
+            position: static;
+            z-index: auto;
+
+            margin: 24px clamp(1em, 2.5vw, 1.5em);
+
+            display: block;
+        }
+        
+        .subheader-title {
+            position: static;
+            z-index: auto;
+
+            display: block;
+            
+            padding: 1em;
+            width: 100%;
+            
+            font-size: clamp(1em, 2.5vw, 1.5em);
+            font-family: Arial, Helvetica, sans-serif;
+            text-transform: capitalize;
+            text-align: center;
+            text-shadow: 2px 2px 1px rgba(255,233,217,255);
+            color: rgba(0, 145, 255, 0.53);
+
+            border: dotted 1px rgb(241, 186, 204);
+            border-radius: 7px;
+        }
+        .content-holder {
+            position: static;
+            z-index: auto;
+
+            margin: 24px clamp(1em, 2.5vw, 1.5em);
+
+            display: block;
+        }
+        .content-list {
+            position: static;
+            z-index: auto;
+
+            display: block;
+            
+            padding: 1em;
+            margin: clamp(1em, 2.5vw, 1.5em);
+            
+            font-size: clamp(1em, 2.5vw, 1.5em);
+            font-family: Arial, Helvetica, sans-serif;
+            text-transform: capitalize;
+            text-align: center;
+            text-decoration: none;
+            text-shadow: 2px 2px 1px rgba(255,233,217,255);
+            color: rgba(0, 145, 255, 0.5);
+
+            border: solid 1px rgb(241, 186, 204);
+            border-radius: 7px;
+        }
+        .content-list:link {
+            color: rgba(0, 145, 255, 0.5);
+        }
+        .content-list:visited {
+            color: rgba(0, 145, 255, 0.5);
+        }
+        .content-list:hover {
+            color: white;
+            background-color: rgba(202, 135, 235, 0.1);
+        }
+        .content-list:active {
+            color: white;
+            background-color: rgba(202, 135, 235, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-title">
+            smz math
+        </div>
+    </header>
+    <header class="subheader">
+        <div class="subheader-title">
+            Available Math Method List!!!
+        </div>
+    </header>
+    <div class="content-holder">
+        <!-- <a href="localpage" class="content-list">Testing List</a> -->
+    </div>
+    <script>
+        // contentlist
+        const contentList = document.querySelector(".content-list")
+        const contentHolder = document.querySelector(".content-holder")
+
+        const methodList = [
+            ["calculator","formula/calculator.html"]
+        ]
+        for(let i = 0; i < methodList.length; ++i){
+            const contentListNode = document.createElement("a")
+            contentListNode.setAttribute("href",methodList[i][1])
+            contentListNode.setAttribute("class","content-list")
+            contentListNode.textContent = methodList[i][0]
+            contentHolder.appendChild(contentListNode)
+        }
+    </script>
+</body>
+</html>

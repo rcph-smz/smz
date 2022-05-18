@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cmd xd</title>
+    <style>
+        * {
+            background: black;
+            margin: 0;       
+            padding: 0;
+            box-sizing: border-box;
+            color: white;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        body {
+            margin: 24px;
+        }
+        div {
+            display: inline;
+            word-wrap: break-word;
+            word-break: break-all;
+            
+        }
+    </style>
+</head>
+<body>
+<div class="ledger">
+
+</div>
+<div class="scrollView">
+
+</div>
+<script>
+ let number = String(Math.random().toFixed(1) * 10) ;
+ 
+ let bin = number <= 6 ? 1 : 0 ;
+
+
+ function update() {
+     number = Math.random().toFixed(1) * 10 ;
+     bin = number <= 6 ? 1 : 0 ;
+
+    for(var y = 0; y < 30; ++y) { 
+    number = Math.random().toFixed(1) * 10 ;
+    bin = number <= 6 ? 1 : 0 ;
+    const nodeDiv = document.createElement('div');
+    nodeDiv.setAttribute('class','loop'); 
+    nodeDiv.innerText = bin;
+    document.querySelector('.ledger').appendChild(nodeDiv);
+    
+   // console.log("updateLocal: " + number);
+
+   }  
+}
+setInterval(() => {
+    document.querySelector('.scrollView').scrollIntoView({behavior: "smooth"});
+}, 1000);
+
+let derun = null ;
+let run = function () {
+    derun = setInterval(update, 1);
+    return "running";
+}
+let stop = function () {
+    clearInterval(derun);
+    return "not running"
+}
+
+ console.log("global: " + number);
+</script>
+</body>
+</html>

@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>screenshot preview</title>
+    <style>
+        *::-webkit-scrollbar {
+            width: 10px;
+        }
+        *::selection {
+            display: none;
+        }
+        *::-webkit-scrollbar-thumb {
+            background-color: #b382ba;
+            border-radius: 2px;
+            border: solid 1px lavender;
+        }
+        *::-webkit-scrollbar-track {
+            background-color: lavender;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: 0;
+            overflow-x: hidden;
+        }
+        body {
+            position: static;
+            z-index: auto;
+            
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: lavender;
+
+            height: 100vh;
+            width: 100vw;
+        }
+        .img-frame {
+            position: static;
+            z-index: auto;
+
+            display: block;
+            margin: 0 auto;
+
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        .nav {
+            position: fixed;
+            z-index: 10;
+            left: 0;
+            top: 0;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        .prev {
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 2px;
+            border-radius: 100%;
+            height: 5vw;
+            width: 5vw;
+            min-height: 40px;
+            min-width: 40px;
+            font-size: 3vw;
+            font-weight: 1000;
+            font-family: monospace;
+            overflow: hidden;
+
+            background-color: rgba(181, 181, 181, 0.5);
+            color: black;
+
+            cursor: pointer;
+        }
+        .next {
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 2px;
+            border-radius: 100%;
+            height: 5vw;
+            width: 5vw;
+            min-height: 40px;
+            min-width: 40px;
+            font-size: 3vw;
+            font-weight: 1000;
+            font-family: monospace;
+            overflow: hidden;
+
+            background-color: rgba(181, 181, 181, 0.5);
+            color: black;
+
+            cursor: pointer;
+        }
+        .rotate {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 2px;
+            border-radius: 100%;
+            height: 5vw;
+            width: 5vw;
+            min-height: 40px;
+            min-width: 40px;
+            font-size: 3vw;
+            font-weight: 1000;
+            font-family: monospace;
+            overflow: hidden;
+
+            background-color: rgba(181, 181, 181, 0.5);
+            color: black;
+
+            cursor: pointer;
+        }
+        .download {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 2px;
+            border-radius: 100%;
+            height: 5vw;
+            width: 5vw;
+            min-height: 40px;
+            min-width: 40px;
+            font-size: 3vw;
+            font-weight: 1000;
+            font-family: monospace;
+            overflow: hidden;
+
+            background-color: rgba(181, 181, 181, 0.5);
+            color: black;
+
+            cursor: pointer;
+        }
+        .changeViewMode {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 2px;
+            border-radius: 100%;
+            height: 5vw;
+            width: 5vw;
+            min-height: 40px;
+            min-width: 40px;
+            font-size: 3vw;
+            font-weight: 1000;
+            font-family: monospace;
+            overflow: hidden;
+
+            background-color: rgba(181, 181, 181, 0.5);
+            color: black;
+
+            cursor: pointer;
+        }
+        .prev:hover {
+            color: lavender;
+        }
+        .next:hover  {
+            color: lavender;
+        }
+        .rotate:hover {
+            color: lavender;
+        }
+        .download:hover {
+            color: lavender;
+        }
+        .changeViewMode:hover {
+            color: lavender;
+        }
+
+        /* all view */
+        .allView {
+            position: static;
+            z-index: auto;
+
+            display: none;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto;
+        }
+        .viewFrame {
+            position: static;
+            z-index: auto;
+
+            display: block;
+            content-visibility: auto;
+            margin: 10px;
+            border: solid 1px rgb(216, 103, 216);
+            width: 200px;
+        }
+    </style>
+</head>
+<body>
+    <div class="allView">
+
+    </div>
+    <img class="img-frame" alt="screenshotViewWasEmpty">
+    <div class="nav">
+        <div class="prev">
+            &lt;
+        </div>
+        <div class="next">
+            &gt;
+        </div>
+        <div class="rotate">
+            &#10608;
+        </div>
+        <a class="download" download>
+            &darr;
+        </a>
+        <div class="changeViewMode">
+            v
+        </div>
+    </div>
+</body>
+<script>
+    const folderViewName = "img/";
+    //rotateView
+
+    let imageRotation = 0;
+    //changeView
+    let viewMode = false;
+
+    let iterateImage = 0;
+    const imagelist = [
+    "background.jpg",
+    "jempro.jpg"
+    ];
+    const allView = document.querySelector(".allView");
+    let screenshotView = document.querySelector(".img-frame");
+
+    const next = document.querySelector(".next");
+    const prev = document.querySelector(".prev");
+    const rotate = document.querySelector(".rotate");
+    const download = document.querySelector(".download");
+    const changeViewMode = document.querySelector(".changeViewMode");
+
+    screenshotView.setAttribute("src",folderViewName + imagelist[iterateImage]);
+
+    for(let allViewIterate = 0; allViewIterate < imagelist.length; ++allViewIterate){
+        var createView = document.createElement("img");
+        createView.setAttribute("class","viewFrame");
+        createView.setAttribute("src",folderViewName + imagelist[allViewIterate]);
+        allView.appendChild(createView);
+    }
+
+    function nextView() {
+        if(imagelist[iterateImage] == imagelist[imagelist.length - 1]){
+            iterateImage = imagelist.length - 1;
+        }
+        else {
+            iterateImage += 1;
+            screenshotView.setAttribute("src",folderViewName + imagelist[iterateImage]);
+        }    
+    }
+    function returnView() {
+        if(iterateImage == 0){
+            iterateImage = 0;
+        }
+        else {
+            iterateImage -= 1;
+            screenshotView.setAttribute("src",folderViewName + imagelist[iterateImage]);
+        }
+    }
+    function rotateView() {
+        imageRotation += 90;
+        screenshotView.style.transform = `rotateZ(${imageRotation}deg)`;
+    }
+    function changeView() {
+        if(viewMode == true){
+            screenshotView.style.display = "block";
+            allView.style.display = "none";
+
+            viewMode = false;
+        }
+        else {
+            viewMode = true;
+            screenshotView.style.display = "none";
+            allView.style.display = "flex";
+        }
+    }
+    function downloadView(){
+        alert("Just download it manually i'm tired");
+    }
+
+    next.addEventListener('click',() => {
+        nextView();
+    })
+    prev.addEventListener('click',() => {
+        returnView();
+    })
+    rotate.addEventListener('click',() => {
+        rotateView();
+    })
+    download.addEventListener('click',() => {
+        downloadView();
+    })
+    changeViewMode.addEventListener('click',() => {
+        changeView();
+    })
+</script>
+</html>

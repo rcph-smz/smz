@@ -1,0 +1,13 @@
+- add shadow effects to those container
+
+- add two wrapper - file mode and container mode
+
+- when ctr was hovered play the video , then when hovered out back into currentTime = 10
+
+goal: when the user click the plus(+) sign it will add to playlist, but if he/she click the play button it will play directly.
+
+- add override button , when override is "on/true", the player dont care(it will not pause) either you play other audio/video in other application
+
+- when icon ciick, go to document.querySelector(".media")
+
+- give a path example : "MaidCat"

@@ -1,0 +1,14 @@
+//TODO 
+
+css in smz-form/index.php was redirect in 
+https://rcph-smz.github.io/smz/smz-css/smzmain.css
+
+upload feedback on github
+
+upload presentation for school
+
+update smz/index.html
+
+upload smz/pgr/prioritize.html
+
+smz/app/credits.html needs to be place in right place xd and update the application.openurl() in unity
