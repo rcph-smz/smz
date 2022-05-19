@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>smz-pgr</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background-color: lavender;
+
+            width: 100vw;
+        }
+        .temp-header {
+            position: static;
+            z-index: auto;
+
+            display: block;
+            text-align: center;
+            font-size: 1.5em;
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: 700;
+            padding: 1.1em;
+            
+        }
+        .temp-data-friends , .temp-data-students{
+            position: static;
+            z-index: auto;
+
+            display: block;
+            white-space: pre;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="temp-header">
+        Friends
+    </div>
+    <div class="temp-data-friends"></div>
+    <div class="temp-header">
+        Students
+    </div>
+    <div class="temp-data-students"></div>
+    <script>
+        const friends = document.querySelector(".temp-data-friends")
+        const students = document.querySelector(".temp-data-students")
+        friends.textContent = `Asuna - 10265389
+Hazama - 16961306
+Krisna - 18819117
+♥️G  - 10237319
+Luc - 10697612
+Hashira ex3 leader - 18968963
+Cowru - 16653789
+(Unknown) - 10246853
+HanaWeeb - 16234691
+Zylias - 17152264
+Genos - 11422939 - the guy that lost the time
+Doomcycle - 12498771
+Aisen - 18725206
+[Nicehealer] - 14682568
+Nyah comrade = {
+Tsukki : 13675375,
+Arriexha : 12611544
+}
+[Meta guy] - 12188296
+[Meta guy] - 11833015
+Satella - 17055845
+Kanon (asuna) - 17715912
+Nyx - 16030039
+Devies - 15855826
+<3 Moon - 12216290
+Shizumi id - 13738185
+Hikari (fb fren) - 14709469
+Ice - 12191576
+Trix - 13270430
+Exeternity - 16893209 [i will join someday]
+Snacc(lost resi) -18420079
+Trap sensei - 19815647
+`
+        students.textContent = `Blitzstream - 11269520
+PEKONG - 12478827
+        `
+    </script>
+</body>
+</html>
