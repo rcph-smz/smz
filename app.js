@@ -3,7 +3,7 @@ const readLine = require('readline').createInterface({
     output: process.stdout
 })
 let folderName = ''
-function requestFolder() {
+function ReadLine() {
     return new Promise((resolved,rejected) => {
         readLine.question("folderName : ",(res) => {
             folderName = res.toString()
@@ -14,8 +14,8 @@ function requestFolder() {
 }
 
 const fs = require('fs')
-async function run() {
-    await  requestFolder()
+async function yieldList() {
+    await ReadLine()
 
     fs.readdir(folderName, function(err,file){
         for(i of file){
@@ -25,4 +25,4 @@ async function run() {
         }
     })
 }
-run()
+yieldList()
