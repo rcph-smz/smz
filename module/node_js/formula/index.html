@@ -42,17 +42,17 @@
             }
         }
         const relu = new ReLU()
-        let value = -300
+        let start = -100
         const end = 100 
+        const interval = 1
 
-        while(value < end){
-            value += 1
+        while(start < end){
+            start += interval
             const point = document.createElement("span")
             point.setAttribute("class","point")
-            point.style.top = relu.y_axis(relu.x_axis(value)) + (innerHeight/2) +"px"
-            point.style.left = relu.x_axis(value) + (innerWidth/2) + "px"
+            point.style.top = -relu.y_axis(relu.x_axis(start)) + (innerHeight/2) +"px"
+            point.style.left = relu.x_axis(start) + (innerWidth/2) + "px"
             document.body.appendChild(point)
-
         }
 
     </script>
