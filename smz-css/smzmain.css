@@ -132,11 +132,37 @@ body {
    height: calc(100vh - 48px);
    width: 100vw;
    
-   padding: 40px 20vw 96px;
+   padding: 0 20vw 96px; /* 40px 20vw 96px*/
    color: aliceblue; /* pink rgba(61,135,204,1) rgba(253,197,61,255) rgba(250,220,149,255)*/
    font-size: 1.5em;
    text-shadow: 5px 5px 2px rgb(108,78,84); /* rgb(255, 144, 162) rgba(61,135,204,1)*/
    
+}
+.smz-srch-ctr {
+   position: static;
+   z-index: auto;
+
+   display: block;
+   width: 100%;
+}
+.smz-search {
+   position: static;
+   z-index: auto;
+   
+   display: block;
+   margin: 0 auto;
+   width: 100%;
+   border: solid 1px transparent;
+   border-radius: 9999px;
+   padding: 10px;
+   text-indent: 10px;
+   
+   font-size: .7em;
+   outline: none;
+   background-color: aliceblue;
+}
+*::placeholder {
+   text-align: center;
 }
 
 
@@ -162,7 +188,6 @@ body {
    padding: 60px 0 ;
    font-size: 2em;
    text-align: center;
-
 }
 .smz-anchor-link {
    position: static;
