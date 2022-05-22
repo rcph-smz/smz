@@ -98,15 +98,22 @@ const wb_srch = [
     ["g:","https://www.google.com/search","q"],
     ["fb:","https://www.facebook.com/search/top","q"]
 ]
-
+let flink = false
 srch.addEventListener("keyup",(e) => {
     for(i of wb_srch){
         if(srch.value.toLowerCase().startsWith(i[0])) {
             fm_ctr.setAttribute("action",i[1].toString())
             srch.setAttribute("name",i[2])
+            flink = true
+            break
+        }
+        else {
+            fm_ctr.setAttribute("action","")
+            srch.setAttribute("name","")
+            flink = false
         }
     }
-    if(e.keyCode == 13) {
+    if(e.keyCode == 13 && flink) {
         srch.value = srch.value.substring(srch.value.indexOf(":") + 1).trim()
         bgn.click()
     }
