@@ -164,7 +164,9 @@ body {
 *::placeholder {
    text-align: center;
 }
-
+.bgn {
+   display: none;
+}
 
 .smz-anchor {
    position: static;

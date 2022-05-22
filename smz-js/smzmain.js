@@ -1,4 +1,10 @@
 
+// randomRange from unity
+function randomRange(min,max){
+    return Math.floor(Math.random() * (max - min)) + min;
+}
+
+
 const folderName = "mp3/"
 const musicList = [
     "DoctorNoSense - Safe to Say (Official Audio).mp3",
@@ -84,7 +90,29 @@ document.body.addEventListener('click', function(e) {
     }, 1000)
 })
 
-// randomRange from unity
-function randomRange(min,max){
-    return Math.floor(Math.random() * (max - min)) + min;
+const fm_ctr = document.querySelector(".smz-srch-ctr")
+const srch = document.querySelector(".smz-search")
+const bgn = document.querySelector(".bgn")
+const wb_srch = [
+    ["yt:","https://www.youtube.com/results","search_query"],
+    ["g:","https://www.google.com/search","q"],
+    ["fb:","https://www.facebook.com/search/top","q"]
+]
+
+srch.addEventListener("keyup",(e) => {
+    for(i of wb_srch){
+        if(srch.value.toLowerCase().startsWith(i[0])) {
+            fm_ctr.setAttribute("action",i[1].toString())
+            srch.setAttribute("name",i[2])
+        }
+    }
+    if(e.keyCode == 13) {
+        srch.value = srch.value.substring(srch.value.indexOf(":") + 1).trim()
+        bgn.click()
+    }
+    bgn_click()
+})
+function bgn_click() {
+    //execute bgn click when the button was click
 }
+
