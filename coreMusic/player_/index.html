@@ -83,7 +83,12 @@
             margin: 10px;
             transition: transform .2s ease;
             
+            visibility: hidden;
             border: solid 1px black;
+        }
+        .manifest-ctr-list {
+            visibility: visible;
+
         }
         .ctr-vlist {
             position: static;
@@ -347,38 +352,39 @@
         </div>
     </div>
     <script>
-        let lists = [
-        "f(x) - 4 Walls (Zekk Remix).mp4",
-"lapix - Day by day (PSYQUI Remix).mp4",
+        let lists = ["f(x) - 4 Walls (Zekk Remix).mp4",
 "DoctorNoSense - Safe to Say (Official Audio).mp4",
-"Moe Shop - Notice (w TORIENA).mp4",
-"Moe Shop - Baby Pink (w YUCe).mp4",
-"kamome sano - Lovesick (feat ぷにぷに電機).mp4",
-"OYASUMI in my dream (Original Mix).mp4",
-"PSYQUI - Are You Kidding Me (ft Mami)  Jpop Future Core.mp4",
 "greyl - Trendy.mp4",
-"Nightcore - No Friends (Lyrics).mp4",
+"lapix - Day by day (PSYQUI Remix).mp4",
+"kamome sano - Lovesick (feat ぷにぷに電機).mp4",
+"Moe Shop - Baby Pink (w YUCe).mp4",
+"Moe Shop - Notice (w TORIENA).mp4",
+"OYASUMI in my dream (Original Mix).mp4",
+"PSYQUI & Houou Karin - Shining Lights  Speed Garage.mp4",
+"PSYQUI - Are You Kidding Me (ft Mami)  Jpop Future Core.mp4",
 "PSYQUI - Fly to the moon feat 中村さんそ.mp4",
 "PSYQUI - dont you want me ft Such.mp4",
 "PSYQUI - Love & Roll (ft SUCH) Speed Garage J-Pop.mp4",
 "PSYQUI - Multitalents.mp4",
-"PSYQUI - Secret Dance Hall (ft SUCH)  J-pop 2019.mp4",
-"PSYQUI - Rainbow Dream (ft Mo∀)  Future Core.mp4",
-"PSYQUI - Still in my heart feat ぷにぷに電機  Lyrics [CC].mp4",
-"PSYQUI - OYASUMI in my dream.mp4",
 "PSYQUI - Hype feat Such.mp4",
+"PSYQUI - OYASUMI in my dream.mp4",
+"PSYQUI - Secret Dance Hall (ft SUCH)  J-pop 2019.mp4",
+"PSYQUI - Still in my heart feat ぷにぷに電機  Lyrics [CC].mp4",
 "PSYQUI - Your Voice So Zekk Full Spec Remix (Ft SUCH)  Future Core.mp4",
 "PSYQUI - Up n Up  Future Core.mp4",
+"PSYQUI - Rainbow Dream (ft Mo∀)  Future Core.mp4",
 "PSYQUI - ヒステリックナイトガール (Awakening) (ft SUCH)  J-Pop.mp4",
-"PSYQUI feat Marpril - Girly Cupid.mp4",
 "PSYQUI - ヒステリックナイトガール feat Such (android52 Edit).mp4",
-"Rejection - Signal (ft SUCH)  Future Core 2020.mp4",
+"PSYQUI feat Marpril - Girly Cupid.mp4",
+"Ujico  Snails House - Pixel Dream.mp4",
+"Your voice so (feat such).mp4",
+"Nightcore - No Friends (Lyrics).mp4",
 "Zakku x Nakanojojo - Matcha Love (feat アリガトユイナ).mp4",
 "[Blue Archive] Theme 109.mp4",
-"Your voice so (feat such).mp4",
-"Ujico  Snails House - Pixel Dream.mp4",
 "[Future Garage] f(x) - 4 Walls (Zekk Remix).mp4",
+"Rejection - Signal (ft SUCH)  Future Core 2020.mp4",
 "「Footwork」[PSYQUI] Too Late.mp4"
+
         ]
         let folderName = "./MaidCat/"
         let currentPlay = null
@@ -391,7 +397,7 @@
         const sd_wrapper = document.querySelector(".sd-wrapper")
 
         const curr_icon = document.querySelector(".curr-icon")
-        const curr_pause = document.querySelector(".curr-pause")
+        const curr_player = document.querySelector(".curr-pause")
         const title = document.querySelector(".title")
         const range = document.querySelector(".range")
 
@@ -452,28 +458,55 @@
             plist_holder.appendChild(plist_title)
             sd_wrapper.appendChild(plist)
         })
+
+        //intersection observer
+        const ctr_glist = document.querySelectorAll(".ctr-list")
+        const ctr_list_observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                entry.target.classList.toggle("manifest-ctr-list",entry.isIntersecting)
+            })
+        })
+        ctr_glist.forEach((ctr) => {
+            ctr_list_observer.observe(ctr)
+        })
+        
         function ctrPlay(list) {
-            if(list == currentPlay) return
+            if(list == currentPlay && !currentAudio.paused) return
+            else if(list == currentPlay && currentAudio.paused){
+                audio_play()
+            }
+            else {
                 currentPlay = list
                 currentAudio.src = folderName + list
+                media.src = folderName + list
 
                 audio_status()
                 display_title()
                 display_icon(list)
                 display_media(list)
+            }
+                
+        }
+        //audio
+        function audio_play() {
+            curr_player.textContent = "| |"
+            currentAudio.play()
+            media.play()
+        }
+        function audio_pause() {
+            curr_player.textContent = ">"
+            currentAudio.pause()
+            media.pause()
         }
         function audio_status() {
             if(currentPlay == undefined || null) return
             if(currentAudio.paused){
-                curr_pause.textContent = "| |"
-                currentAudio.play()
-                media.play()
+                audio_play()
             } else {
-                curr_pause.textContent = ">"
-                currentAudio.pause()
-                media.pause()
+                audio_pause()
             }
         }
+        //display
         function display_title(file_name){
             title.textContent = currentPlay
         }
@@ -487,7 +520,6 @@
             }, 200);
         }
         function display_media(list) {
-            media.src = folderName + list
             media.muted = true
             media.play()
         }
@@ -514,8 +546,8 @@
             }
         }
 
-        range.addEventListener("timeupdate",thumb_status)
-        curr_pause.addEventListener("click",audio_status)
+        // range.addEventListener("timeupdate",thumb_status)
+        curr_player.addEventListener("click",audio_status)
         sd_btn.addEventListener("click",sd_switch)
     </script>
 </body>
