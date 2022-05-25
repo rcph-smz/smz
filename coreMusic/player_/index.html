@@ -85,6 +85,8 @@
             
             visibility: hidden;
             border: solid 1px black;
+
+            transform: scale(1);
         }
         .manifest-ctr-list {
             visibility: visible;
@@ -307,6 +309,29 @@
             width: 100%;
             text-align: center;
         }
+        .plist-add {
+            position: absolute;
+            z-index: auto;
+            top: 0;
+            right: 0;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            min-height: 20px;
+            min-width: 20px;
+            max-height: 26px;
+            max-width: 26px;
+
+            color: white;
+            background-color: rgba(190, 119, 207, .4);
+
+            text-shadow: 1px 1px 1px black;
+
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: 500;
+        }
         @keyframes sd-btn {
             0% {
                 opacity: 1;
@@ -322,10 +347,11 @@
 </head>
 <body>
     <div class="sd-pg">
+        <div class="visual">
+            <video class="media" poster="Character-CrimsonAbyss-Portrait.webp"></video>
+        </div>
         <div class="sd-wrapper">
-            <div class="visual">
-                <video class="media" poster="Character-CrimsonAbyss-Portrait.webp"></video>
-            </div>
+
         </div>
         <div class="sd-btn">
             ☰
@@ -348,44 +374,47 @@
             MaidCat
         </div>
         <div class="ctr-lists">
-            
+
         </div>
     </div>
     <script>
-        let lists = ["f(x) - 4 Walls (Zekk Remix).mp4",
-"DoctorNoSense - Safe to Say (Official Audio).mp4",
+        let lists = [
+        "DoctorNoSense - Safe to Say (Official Audio).mp4",
+"f(x) - 4 Walls (Zekk Remix).mp4",
 "greyl - Trendy.mp4",
 "lapix - Day by day (PSYQUI Remix).mp4",
 "kamome sano - Lovesick (feat ぷにぷに電機).mp4",
 "Moe Shop - Baby Pink (w YUCe).mp4",
-"Moe Shop - Notice (w TORIENA).mp4",
+"Nightcore - No Friends (Lyrics).mp4",
 "OYASUMI in my dream (Original Mix).mp4",
 "PSYQUI & Houou Karin - Shining Lights  Speed Garage.mp4",
 "PSYQUI - Are You Kidding Me (ft Mami)  Jpop Future Core.mp4",
 "PSYQUI - Fly to the moon feat 中村さんそ.mp4",
+"PSYQUI - Hype feat Such.mp4",
 "PSYQUI - dont you want me ft Such.mp4",
 "PSYQUI - Love & Roll (ft SUCH) Speed Garage J-Pop.mp4",
-"PSYQUI - Multitalents.mp4",
-"PSYQUI - Hype feat Such.mp4",
 "PSYQUI - OYASUMI in my dream.mp4",
+"PSYQUI - Multitalents.mp4",
+"PSYQUI - Rainbow Dream (ft Mo∀)  Future Core.mp4",
 "PSYQUI - Secret Dance Hall (ft SUCH)  J-pop 2019.mp4",
 "PSYQUI - Still in my heart feat ぷにぷに電機  Lyrics [CC].mp4",
-"PSYQUI - Your Voice So Zekk Full Spec Remix (Ft SUCH)  Future Core.mp4",
-"PSYQUI - Up n Up  Future Core.mp4",
-"PSYQUI - Rainbow Dream (ft Mo∀)  Future Core.mp4",
+"Moe Shop - Notice (w TORIENA).mp4",
 "PSYQUI - ヒステリックナイトガール (Awakening) (ft SUCH)  J-Pop.mp4",
 "PSYQUI - ヒステリックナイトガール feat Such (android52 Edit).mp4",
 "PSYQUI feat Marpril - Girly Cupid.mp4",
-"Ujico  Snails House - Pixel Dream.mp4",
-"Your voice so (feat such).mp4",
-"Nightcore - No Friends (Lyrics).mp4",
-"Zakku x Nakanojojo - Matcha Love (feat アリガトユイナ).mp4",
-"[Blue Archive] Theme 109.mp4",
-"[Future Garage] f(x) - 4 Walls (Zekk Remix).mp4",
+"PSYQUI - Your Voice So Zekk Full Spec Remix (Ft SUCH)  Future Core.mp4",
 "Rejection - Signal (ft SUCH)  Future Core 2020.mp4",
-"「Footwork」[PSYQUI] Too Late.mp4"
-
+"Still in my heart (feat ぷにぷに電機).mp4",
+"PSYQUI - Up n Up  Future Core.mp4",
+"Signal (feat Such).mp4",
+"Ujico  Snails House - Pixel Dream.mp4",
+"Zakku x Nakanojojo - Matcha Love (feat アリガトユイナ).mp4",
+"[Future Garage] f(x) - 4 Walls (Zekk Remix).mp4",
+"「Footwork」[PSYQUI] Too Late.mp4",
+"Your voice so (feat such).mp4",
+"[Blue Archive] Theme 109.mp4"
         ]
+        let plist_vl = []
         let folderName = "./MaidCat/"
         let currentPlay = null
         let currentAudio = new Audio()
@@ -416,12 +445,21 @@
             ctr_vlist.src = folderName + list
             // ctr_vlist.muted = true
 
-            ctr_list.appendChild(ctr_vlist)
-            document.querySelectorAll(".ctr-lists")[0].appendChild(ctr_list)
+            const plist_add = document.createElement("div")
+            plist_add.setAttribute("class","plist-add")
+            plist_add.textContent = "+"
 
+            ctr_list.appendChild(ctr_vlist)
+            ctr_list.appendChild(plist_add)
+            document.querySelectorAll(".ctr-lists")[0].appendChild(ctr_list)
+            
             ctr_vlist.addEventListener("click",() => {
                 ctrPlay(list)
             })
+            plist_add.addEventListener("click",() => {
+                add_playlist(list)
+            })
+
             ctr_list.addEventListener("mouseover",() => {
                 ctr_list.style.boxShadow = "4px 4px 4px rgb(180, 184, 227), -4px -4px 4px rgb(180, 184, 227),4px -4px 4px rgb(180, 184, 227),-4px 4px 4px rgb(180, 184, 227)"
                 ctr_list.style.transform = "scale(1.2)"
@@ -436,28 +474,27 @@
                 ctr_vlist.currentTime = 10
             })
         })
-        lists.forEach((list,i) => {
+        function add_playlist(list) {
+            plist_vl.push(list)
+
             const plist = document.createElement("div")
             plist.setAttribute("class","playlist")
-
             const plist_ilist = document.createElement("video")
             plist_ilist.setAttribute("class","playlist-icon")
             plist_ilist.setAttribute("poster","Character-CrimsonAbyss-Portrait.webp")
             plist_ilist.currentTime = 10
             plist_ilist.src = folderName + list
-
             const plist_holder = document.createElement("div")
             plist_holder.setAttribute("class","playlist-holder")
-
             const plist_title = document.createElement("div")
             plist_title.setAttribute("class","playlist-title")
             plist_title.textContent = list
-
             plist.appendChild(plist_ilist)
             plist.appendChild(plist_holder)
             plist_holder.appendChild(plist_title)
             sd_wrapper.appendChild(plist)
-        })
+        }
+
 
         //intersection observer
         const ctr_glist = document.querySelectorAll(".ctr-list")
@@ -476,18 +513,29 @@
                 audio_play()
             }
             else {
-                currentPlay = list
-                currentAudio.src = folderName + list
-                media.src = folderName + list
-
+                initialize_list(list)
                 audio_status()
                 display_title()
                 display_icon(list)
                 display_media(list)
             }
-                
         }
-        //audio
+        function initialize_list(list) {
+            currentPlay = list
+            currentAudio.src = folderName + list
+            media.src = folderName + list
+        }
+
+        //audio_status
+        function audio_status() {
+            if(currentPlay == undefined || null) return
+            if(currentAudio.paused){
+                audio_play()
+            } else {
+                audio_pause()
+            }
+        }
+        //audio_controller
         function audio_play() {
             curr_player.textContent = "| |"
             currentAudio.play()
@@ -498,14 +546,7 @@
             currentAudio.pause()
             media.pause()
         }
-        function audio_status() {
-            if(currentPlay == undefined || null) return
-            if(currentAudio.paused){
-                audio_play()
-            } else {
-                audio_pause()
-            }
-        }
+
         //display
         function display_title(file_name){
             title.textContent = currentPlay
@@ -524,7 +565,7 @@
             media.play()
         }
         function thumb_status() {
-
+            
         }
         //etc
         function random_int(min,max) {
