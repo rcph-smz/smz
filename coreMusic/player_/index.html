@@ -109,8 +109,8 @@
             position: fixed;
             z-index: 1;
             top: 0;
-            /* right: clamp(-100vw,-40vw,-300px); */
-            right: 0;
+            right: clamp(-100vw,-40vw,-300px);
+            /* right: 0; */
 
             display: block;
 
@@ -120,7 +120,7 @@
             background-color: aliceblue;
             overflow: visible;
 
-            transition: all .5s ease;
+            /* transition: all .5s ease; */
         }
         .sd-btn {
             position: absolute;
@@ -343,6 +343,22 @@
                 opacity: 1;
             }
         }
+        @keyframes sd_in {
+            from {
+                right: 0;
+            }
+            to {
+                right: clamp(-100vw,-40vw,-300px);
+            }
+        }
+        @keyframes sd_out {
+            from {
+                right: clamp(-100vw,-40vw,-300px);
+            }
+            to {
+                right: 0;
+            }
+        }
     </style>
 </head>
 <body>
@@ -360,7 +376,7 @@
             <video class="curr-icon" poster="./Character-CrimsonAbyss-Portrait.webp"></video>
             <div class="range-title">
                 <div class="title">&lt; please choose audio &gt;</div>
-                <input type="range" value="0" max="100" class="range">
+                <!-- <input type="range" value="0" max="100" class="range"> -->
             </div>
             <!-- <img src="./icon/play.png" alt="" class="curr-pause"> -->
             <div class="curr-pause">></div>
@@ -588,16 +604,18 @@
         let sd_option = true
         function sd_switch() {
             if(sd_option){
-                sd_pg.style.right = 0
+                // sd_pg.style.right = 0
                 sd_option = false
                 sd_btn.textContent = "X"
                 sd_btn.style.animation = "sd-btn .5s"
+                sd_pg.style.animation = "sd_out .5s forwards"
             }
             else {
-                sd_pg.style.right = "clamp(-100vw,-40vw,-300px)"
+                // sd_pg.style.right = "clamp(-100vw,-40vw,-300px)"
                 sd_option = true
                 sd_btn.textContent = "☰"
                 sd_btn.style.animation = "sd-btn .5s"
+                sd_pg.style.animation = "sd_in .5s forwards"
             }
         }
 
