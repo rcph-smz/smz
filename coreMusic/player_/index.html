@@ -468,16 +468,14 @@
                 ctr_vlist.currentTime = 10
             })
         })
-
         setInterval(() => {
-            if(currentAudio.ended){
+            if(currentAudio.ended && plist_vl[0] != undefined){
                 initialize_list(plist_vl[0])
                 audio_play()
                 display_title()
                 display_icon(plist_vl[0])
                 display_media(plist_vl[0])
                 shift_playlist()
-                console.log(plist_vl)
             }
         }, 1000)
 
