@@ -101,15 +101,16 @@ const wb_srch = [
 let flink = false
 srch.addEventListener("keyup",(e) => {
     for(i of wb_srch){
-        if(srch.value.toLowerCase().startsWith(i[0])) {
+        if(srch.value.trim().toLowerCase().startsWith(i[0])) {
             fm_ctr.setAttribute("action",i[1].toString())
             srch.setAttribute("name",i[2])
             flink = true
             break
         }
         else {
-            fm_ctr.setAttribute("action","")
-            srch.setAttribute("name","")
+            fm_ctr.setAttribute("action",`${location.pathname.substring(0,location.pathname.lastIndexOf("/"))}/${srch.value}`)
+            // srch.setAttribute("name","")
+            srch.removeAttribute("name")
             flink = false
         }
     }
