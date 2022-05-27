@@ -123,4 +123,6 @@ srch.addEventListener("keyup",(e) => {
 function bgn_click() {
     //execute bgn click when the button was click
 }
+let jk = "."+location.pathname.substring(0,location.pathname.lastIndexOf("/")).substring(location.pathname.substring(0,location.pathname.lastIndexOf("/")).lastIndexOf("/"))
 
+console.log(jk)
