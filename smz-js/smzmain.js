@@ -96,7 +96,8 @@ const bgn = document.querySelector(".bgn")
 const wb_srch = [
     ["yt:","https://www.youtube.com/results","search_query"],
     ["g:","https://www.google.com/search","q"],
-    ["fb:","https://www.facebook.com/search/top","q"]
+    ["fb:","https://www.facebook.com/search/top","q"],
+    ["core:","./coreMusic/player_/index.html"]
 ]
 let flink = false
 srch.addEventListener("keyup",(e) => {
@@ -108,7 +109,7 @@ srch.addEventListener("keyup",(e) => {
             break
         }
         else {
-            fm_ctr.setAttribute("action",`${location.pathname.substring(0,location.pathname.lastIndexOf("/"))}/${srch.value}`)
+            fm_ctr.setAttribute("action",`./${srch.value}`)
             // srch.setAttribute("name","")
             srch.removeAttribute("name")
             flink = false
