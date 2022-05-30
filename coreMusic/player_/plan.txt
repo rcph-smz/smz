@@ -13,3 +13,5 @@ goal: when the user click the plus(+) sign it will add to playlist, but if he/sh
 - give a path example : "MaidCat"
 
 - add document.readyState = "complete" to initialized document
+
+- add preload-poster = "lucia"

@@ -28,7 +28,7 @@
             padding: 1.1em;
             
         }
-        .temp-data-friends , .temp-data-students{
+        .temp-data-friends , .temp-data-students , .temp-data-graduated , .temp-data-inactive-students{
             position: static;
             z-index: auto;
 
@@ -47,9 +47,19 @@
         Students
     </div>
     <div class="temp-data-students"></div>
+    <div class="temp-header">
+        Students-Graduated
+    </div>
+    <div class="temp-data-graduated"></div>
+    <div class="temp-header">
+        Inactive-Students
+    </div>
+    <div class="temp-data-inactive-students"></div>
     <script>
         const friends = document.querySelector(".temp-data-friends")
         const students = document.querySelector(".temp-data-students")
+        const graduated = document.querySelector(".temp-data-graduated")
+        const inactive_students = document.querySelector(".temp-data-inactive-students")
         friends.textContent = `Asuna - 10265389
 Hazama - 16961306
 Krisna - 18819117
@@ -86,7 +96,13 @@ Dadan - 17364526
 `
         students.textContent = `Blitzstream - 11269520
 PEKONG - 12478827
+        `
+        graduated.textContent = `
+        
+        `
+        inactive_students.textContent = `
 arcea - 17751049
+        
         `
     </script>
 </body>
