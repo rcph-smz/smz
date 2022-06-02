@@ -97,7 +97,8 @@ const wb_srch = [
     ["yt:","https://www.youtube.com/results","search_query"],
     ["g:","https://www.google.com/search","q"],
     ["fb:","https://www.facebook.com/search/top","q"],
-    ["core:","./coreMusic/player_/index.html"]
+    ["core:","./coreMusic/player_/index.html",""],
+    ["dc:","https://discord.com/channels/@me",""]
 ]
 let flink = false
 srch.addEventListener("keyup",(e) => {
