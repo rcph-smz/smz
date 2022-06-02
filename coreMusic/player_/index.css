@@ -96,6 +96,11 @@
             
             content-visibility: auto;
             object-fit: cover;
+            visibility: hidden;
+
+        }
+        .manifest-ctr-vlist {
+            visibility: visible;
 
         }
         .sd-pg {

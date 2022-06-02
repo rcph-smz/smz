@@ -45,6 +45,7 @@
             for(bchild of body.children){
                 if(bchild.getAttribute("class") == "ctr-wrapper"){
                     lists.forEach((list,i) => {
+
                         const ctr_list = document.createElement("div")
                         ctr_list.setAttribute("class","ctr-list")
             
@@ -53,6 +54,7 @@
                         ctr_vlist.setAttribute("poster","Character-CrimsonAbyss-Portrait.webp")
                         ctr_vlist.currentTime = 10
                         ctr_vlist.src = `${folder_name}/${list}`
+                        ctr_vlist.preload = "auto"
                         // ctr_vlist.muted = true
             
                         const plist_add = document.createElement("div")
@@ -70,35 +72,58 @@
                         })
                         plist_add.addEventListener("click",() => {
                             add_playlist(list,folder_name)
-                        })
-            
-                        ctr_list.addEventListener("mouseover",() => {
+                        })  
+                        function ctr_pointerover() {
                             ctr_list.style.boxShadow = "4px 4px 4px rgb(180, 184, 227), -4px -4px 4px rgb(180, 184, 227),4px -4px 4px rgb(180, 184, 227),-4px 4px 4px rgb(180, 184, 227)"
                             ctr_list.style.transform = "scale(1.2)"
                             
                             ctr_vlist.play()
-                        })
-                        ctr_list.addEventListener("mouseleave",() => {
+                        }
+                        function ctr_pointerleave() {
                             ctr_list.style.boxShadow = ""
                             ctr_list.style.transform = ""
-            
+                            
                             ctr_vlist.pause()
                             ctr_vlist.currentTime = 10
+                        }
+                        function ctr_page_out() {
+                            ctr_list.style.boxShadow = ""
+                            ctr_list.style.transform = ""
+                            
+                            ctr_vlist.load()
+                            ctr_vlist.pause()
+                            ctr_vlist.currentTime = 10
+                        }
+            
+                        ctr_list.addEventListener("pointerover",() => {
+                            ctr_pointerover()
                         })
+                        ctr_list.addEventListener("pointerleave",() => {
+                            ctr_pointerleave()
+                        })
+                        const ctr_list_observer = new IntersectionObserver(entries => {
+                            entries.forEach(entry => {
+                                entry.target.classList.toggle("manifest-ctr-list",entry.isIntersecting)
+                            })
+                        })
+                        ctr_list_observer.observe(ctr_list)
+
+                        const ctr_vlist_observer = new IntersectionObserver(entries => {
+                            entries.forEach(entry => {
+                                entry.target.classList.toggle("manifest-ctr-vlist",entry.isIntersecting)
+                                if(!entry.isIntersecting){
+                                    entry.target.removeAttribute("src")
+                                }
+                                else {
+                                    entry.target.src = `${folder_name}/${list}`
+                                    ctr_page_out()
+                                }
+                            })
+                        })
+                        ctr_vlist_observer.observe(ctr_vlist)
                     })
                 }
             }
-            //intersection observer ----------------------------
-            const ctr_glist = document.querySelectorAll(".ctr-list")
-            const ctr_list_observer = new IntersectionObserver(entries => {
-                entries.forEach(entry => {
-                    entry.target.classList.toggle("manifest-ctr-list",entry.isIntersecting)
-                })
-            })
-            ctr_glist.forEach((ctr) => {
-                ctr_list_observer.observe(ctr)
-            })
-        // --------------------------------------------------
         }
         function add_ctr_h(folder_name){
             const ctr_h = document.createElement("div")
