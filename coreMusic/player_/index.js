@@ -53,13 +53,16 @@
                         ctr_vlist.setAttribute("class","ctr-vlist")
                         ctr_vlist.setAttribute("poster","Character-CrimsonAbyss-Portrait.webp")
                         ctr_vlist.currentTime = 10
-                        // ctr_vlist.src = `${folder_name}/${list}`
+                        ctr_vlist.src = `${folder_name}/${list}`
                         ctr_vlist.preload = "auto"
                         // ctr_vlist.muted = true
             
                         const plist_add = document.createElement("div")
                         plist_add.setAttribute("class","plist-add")
                         plist_add.textContent = "+"
+                        if(innerWidth <= 400){
+                            plist_add.style.transform = ""
+                        }
             
                         ctr_list.appendChild(ctr_vlist)
                         ctr_list.appendChild(plist_add)
@@ -74,27 +77,29 @@
                             add_playlist(list,folder_name)
                         })  
                         function ctr_pointerover() {
-                            ctr_list.style.boxShadow = "4px 4px 4px rgb(180, 184, 227), -4px -4px 4px rgb(180, 184, 227),4px -4px 4px rgb(180, 184, 227),-4px 4px 4px rgb(180, 184, 227)"
-                            ctr_list.style.transform = "scale(1.2)"
-                            
-                            ctr_vlist.play()
+                            if(innerWidth <= 400){
+                                ctr_vlist.play()
+                            }
+                            else {
+                                ctr_list.style.boxShadow = "4px 4px 4px rgb(180, 184, 227), -4px -4px 4px rgb(180, 184, 227),4px -4px 4px rgb(180, 184, 227),-4px 4px 4px rgb(180, 184, 227)"
+                                ctr_list.style.transform = "scale(1.2)"
+
+                                ctr_vlist.play()
+                            }
                         }
                         function ctr_pointerleave() {
-                            ctr_list.style.boxShadow = ""
-                            ctr_list.style.transform = ""
-                            
-                            ctr_vlist.pause()
-                            ctr_vlist.currentTime = 10
+                            if(innerWidth <= 400){
+                                ctr_vlist.pause()
+                                ctr_vlist.currentTime = 10
+                            }
+                            else {
+                                ctr_list.style.boxShadow = ""
+                                ctr_list.style.transform = ""
+                                
+                                ctr_vlist.pause()
+                                ctr_vlist.currentTime = 10
+                            }
                         }
-                        function ctr_page_out() {
-                            ctr_list.style.boxShadow = ""
-                            ctr_list.style.transform = ""
-                            
-                            ctr_vlist.load()
-                            ctr_vlist.pause()
-                            ctr_vlist.currentTime = 10
-                        }
-            
                         ctr_list.addEventListener("pointerover",() => {
                             ctr_pointerover()
                         })
@@ -107,20 +112,6 @@
                             })
                         })
                         ctr_list_observer.observe(ctr_list)
-
-                        const ctr_vlist_observer = new IntersectionObserver(entries => {
-                            entries.forEach(entry => {
-                                entry.target.classList.toggle("manifest-ctr-vlist",entry.isIntersecting)
-                                if(!entry.isIntersecting){
-                                    entry.target.removeAttribute("src")
-                                }
-                                else {
-                                    entry.target.src = `${folder_name}/${list}`
-                                    ctr_page_out()
-                                }
-                            })
-                        })
-                        ctr_vlist_observer.observe(ctr_vlist)
                     })
                 }
             }
