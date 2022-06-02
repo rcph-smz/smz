@@ -53,8 +53,8 @@
                         ctr_vlist.setAttribute("class","ctr-vlist")
                         ctr_vlist.setAttribute("poster","Character-CrimsonAbyss-Portrait.webp")
                         ctr_vlist.currentTime = 10
-                        ctr_vlist.src = `${folder_name}/${list}`
-                        ctr_vlist.preload = "auto"
+                        // ctr_vlist.src = `${folder_name}/${list}`
+                        ctr_vlist.preload = "metadata"
                         // ctr_vlist.muted = true
             
                         const plist_add = document.createElement("div")
