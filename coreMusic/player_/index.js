@@ -21,7 +21,7 @@
             if(currentAudio.ended && plist_vl[0] != undefined){
                 for(data of pathList){
                     for(let k = 0; k < data[1].length; ++k){
-                        if(`./${data[0]}/${data[1][k]}` == `./${data[0]}/${plist_vl[0]}`){
+                        if(`${data[0]}/${data[1][k]}` == `${data[0]}/${plist_vl[0]}`){
                             initialize_list(plist_vl[0],data[0])
                             audio_play()
                             display_title()
@@ -52,7 +52,7 @@
                         ctr_vlist.setAttribute("class","ctr-vlist")
                         ctr_vlist.setAttribute("poster","Character-CrimsonAbyss-Portrait.webp")
                         ctr_vlist.currentTime = 10
-                        ctr_vlist.src = `./${folder_name}/${list}`
+                        ctr_vlist.src = `${folder_name}/${list}`
                         // ctr_vlist.muted = true
             
                         const plist_add = document.createElement("div")
@@ -126,7 +126,7 @@
             plist_ilist.setAttribute("class","playlist-icon")
             plist_ilist.setAttribute("poster","Character-CrimsonAbyss-Portrait.webp")
             plist_ilist.currentTime = 10
-            plist_ilist.src = `./${folder_name}/${list}`
+            plist_ilist.src = `${folder_name}/${list}`
             const plist_holder = document.createElement("div")
             plist_holder.setAttribute("class","playlist-holder")
             const plist_title = document.createElement("div")
@@ -163,8 +163,8 @@
 
         function initialize_list(list,folder_name) {
             currentPlay = list
-            currentAudio.src = `./${folder_name}/${list}`
-            media.src = `./${folder_name}/${list}`
+            currentAudio.src = `${folder_name}/${list}`
+            media.src = `${folder_name}/${list}`
         }
 
         //audio_status
@@ -193,7 +193,7 @@
             title.textContent = currentPlay
         }
         function display_icon(icon,folder_name){
-            curr_icon.src = `./${folder_name}/${icon}`
+            curr_icon.src = `${folder_name}/${icon}`
             curr_icon.play()
             curr_icon.muted = true
             setTimeout(() => {
