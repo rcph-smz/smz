@@ -19,7 +19,7 @@ async function readLineWait() {
     await ReadLine()
     fs.readdir(folderName, function(err,file){
         for(i of file){
-            fs.appendFile('./yield.txt','\"'+ i.trim() + '\",\n', function(err){
+            fs.appendFile('./fileListJs.txt','\"'+ i.trim() + '\",\n', function(err){
 
             })
         }
