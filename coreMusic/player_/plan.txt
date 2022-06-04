@@ -15,3 +15,9 @@ goal: when the user click the plus(+) sign it will add to playlist, but if he/sh
 - add document.readyState = "complete" to initialized document
 
 - add preload-poster = "lucia"
+
+- delay_content to delay video load
+
+- intersection possible ctr to make website faster
+
+- add ripple effect

@@ -30,11 +30,14 @@
                             shift_playlist()
                         }
                     }
-                    
                 }
             }
         }, 1000)
-        
+        function delay_content(content,secs) {
+            setTimeout(() => {
+                content
+            }, secs);
+        }
         function add_ctr_lists(lists,folder_name = "") {
             pathList.push([folder_name,lists])
 
@@ -53,7 +56,7 @@
                         ctr_vlist.setAttribute("class","ctr-vlist")
                         ctr_vlist.setAttribute("poster","Character-CrimsonAbyss-Portrait.webp")
                         ctr_vlist.currentTime = 10
-                        ctr_vlist.src = `${folder_name}/${list}`
+                        // ctr_vlist.src = `${folder_name}/${list}`
                         // ctr_vlist.preload = "auto"
                         // ctr_vlist.muted = true
             
@@ -100,6 +103,13 @@
                                 ctr_vlist.currentTime = 10
                             }
                         }
+                        function ctr_screen_out() {
+                            ctr_list.style.boxShadow = ""
+                            ctr_list.style.transform = ""
+                            
+                            ctr_vlist.pause()
+                            ctr_vlist.currentTime = 10
+                        }
                         ctr_list.addEventListener("pointerover",() => {
                             ctr_pointerover()
                         })
@@ -112,6 +122,19 @@
                             })
                         })
                         ctr_list_observer.observe(ctr_list)
+
+                        const ctr_vlist_observer = new IntersectionObserver(entries => {
+                            entries.forEach(entry => {
+                                if(!entry.isIntersecting){
+                                    entry.target.src = ""
+                                }
+                                else {
+                                    entry.target.src = `${folder_name}/${list}`
+                                    ctr_screen_out()
+                                }
+                            })
+                        })
+                        ctr_vlist_observer.observe(ctr_vlist)
                     })
                 }
             }

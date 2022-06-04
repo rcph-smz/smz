@@ -1,3 +1,37 @@
+        @font-face {
+            font-family: "mochiy_pop_one";
+            src: url("./font/Mochiy_Pop_One/MochiyPopOne-Regular.ttf");
+        }   
+        @font-face {
+            font-family: "hachi_maru_pop";
+            src: url("./font/Hachi_Maru_Pop/HachiMaruPop-Regular.ttf");
+        }
+    
+        .ctr-wrapper::-webkit-scrollbar {
+            width: 10px;
+        }
+        .ctr-wrapper::-webkit-scrollbar-track {
+            background-color: lavender;
+        }
+        .ctr-wrapper::-webkit-scrollbar-thumb {
+            background-color: rgba(132, 58, 58, 0.35);
+            border-radius: 9999px;
+            border: solid 2px lavender;
+        }
+
+        .ctr-lists::-webkit-scrollbar{
+            height: 14px;
+        }
+        .ctr-lists::-webkit-scrollbar-track {
+            background-color: lavender;
+        }
+        .ctr-lists::-webkit-scrollbar-thumb {
+            background-color: rgba(132, 58, 58, 0.35);
+            border-radius: 9999px;
+            border: solid 4px lavender;
+        }
+
+        
 
         * {
             padding: 0;
@@ -8,6 +42,9 @@
         }
         body {
             background-color: lavender;
+
+            height: 100vh;
+            width: 100vw;
         }
         .filler {
             position: static;
@@ -23,13 +60,18 @@
             font-size: 1.1em;
             text-indent: 6vw;
             
-            border: solid 1px black;
+            border: solid 0;
         }
         .ctr-wrapper {
             position: static;
             z-index: auto;
 
             display: block;
+
+            height: 100vh;
+            width: 100vw;
+
+            overflow-y: scroll;
         }
         .ctr-h {
             position: static;
@@ -41,11 +83,18 @@
             min-height: 50px;
             padding: 1.2vw 0; 
 
-            font-family: Arial, Helvetica, sans-serif;
+            font-family: "mochiy_pop_one";
             font-size: 1.1em;
             text-indent: 6vw;
+            text-shadow: 2px 2px 1px rgb(75, 75, 75);
+            letter-spacing: 2px;
             
-            border: solid 1px black;
+            border: solid 0;
+            border-radius: 9999px 0 0 9999px;
+
+            background-color: rgba(132, 58, 58, 0.35);
+            color: white;
+            
         }
         .ctr-lists {
             position: static;
@@ -57,7 +106,7 @@
             padding: 1.2vw 0;
             overflow-x: scroll;
 
-            border: solid 1px black;
+            border: solid 0;
         }
         .ctr-list {
             position: static;
@@ -77,7 +126,7 @@
             transition: transform .2s ease;
             
             visibility: hidden;
-            border: solid 1px black;
+            border: solid 0;
 
             transform: scale(1);
         }
