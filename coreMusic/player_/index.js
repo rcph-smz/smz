@@ -38,8 +38,8 @@
                 content
             }, secs);
         }
-        function add_ctr_lists(lists,folder_name = "") {
-            pathList.push([folder_name,lists])
+        function add_ctr_lists(lists,path = "") {
+            pathList.push([path,lists])
 
             const ctr_lists = document.createElement("div")
             ctr_lists.setAttribute("class","ctr-lists")
@@ -56,7 +56,7 @@
                         ctr_vlist.setAttribute("class","ctr-vlist")
                         ctr_vlist.setAttribute("poster","Character-CrimsonAbyss-Portrait.webp")
                         ctr_vlist.currentTime = 10
-                        // ctr_vlist.src = `${folder_name}/${list}`
+                        // ctr_vlist.src = `${path}/${list}`
                         // ctr_vlist.preload = "auto"
                         // ctr_vlist.muted = true
             
@@ -74,10 +74,10 @@
                         bchild.appendChild(ctr_lists)
                         
                         ctr_vlist.addEventListener("click",() => {
-                            ctrPlay(list,folder_name)
+                            ctrPlay(list,path)
                         })
                         plist_add.addEventListener("click",() => {
-                            add_playlist(list,folder_name)
+                            add_playlist(list,path)
                         })  
                         function ctr_pointerover() {
                             if(innerWidth <= 400){
@@ -129,7 +129,7 @@
                                     entry.target.src = ""
                                 }
                                 else {
-                                    entry.target.src = `${folder_name}/${list}`
+                                    entry.target.src = `${path}/${list}`
                                     ctr_screen_out()
                                 }
                             })
@@ -139,10 +139,10 @@
                 }
             }
         }
-        function add_ctr_h(folder_name){
+        function add_ctr_h(path){
             const ctr_h = document.createElement("div")
             ctr_h.setAttribute("class","ctr-h")
-            ctr_h.textContent = folder_name
+            ctr_h.textContent = path
 
             const body = document.body
             for(bchild of body.children){
@@ -151,12 +151,13 @@
                 }
             }
         }
-        function ctr_template_scroller(lists,folder_name) {
-            add_ctr_h(folder_name)
-            add_ctr_lists(lists,folder_name)
+        function ctr_template_scroller(lists,path,caption) {
+            if(!caption) caption = path
+            add_ctr_h(caption)
+            add_ctr_lists(lists,path)
         }
 
-        function add_playlist(list,folder_name) {
+        function add_playlist(list,path) {
             plist_vl.push(list)
 
             const plist = document.createElement("div")
@@ -165,7 +166,7 @@
             plist_ilist.setAttribute("class","playlist-icon")
             plist_ilist.setAttribute("poster","Character-CrimsonAbyss-Portrait.webp")
             plist_ilist.currentTime = 10
-            plist_ilist.src = `${folder_name}/${list}`
+            plist_ilist.src = `${path}/${list}`
             const plist_holder = document.createElement("div")
             plist_holder.setAttribute("class","playlist-holder")
             const plist_title = document.createElement("div")
@@ -181,16 +182,16 @@
             sd_wrapper.children[0].remove()
         }
 
-        function ctrPlay(list,folder_name) {
+        function ctrPlay(list,path) {
             if(list == currentPlay && !currentAudio.paused) return
             else if(list == currentPlay && currentAudio.paused){
                 audio_play()
             }
             else {
-                initialize_list(list,folder_name)
+                initialize_list(list,path)
                 audio_status()
                 display_title()
-                display_icon(list,folder_name)
+                display_icon(list,path)
                 display_media()
             }
         }
@@ -200,10 +201,10 @@
             media.currentTime = sec
         }
 
-        function initialize_list(list,folder_name) {
+        function initialize_list(list,path) {
             currentPlay = list
-            currentAudio.src = `${folder_name}/${list}`
-            media.src = `${folder_name}/${list}`
+            currentAudio.src = `${path}/${list}`
+            media.src = `${path}/${list}`
         }
 
         //audio_status
@@ -231,8 +232,8 @@
         function display_title(file_name){
             title.textContent = currentPlay
         }
-        function display_icon(icon,folder_name){
-            curr_icon.src = `${folder_name}/${icon}`
+        function display_icon(icon,path){
+            curr_icon.src = `${path}/${icon}`
             curr_icon.play()
             curr_icon.muted = true
             setTimeout(() => {
@@ -310,4 +311,4 @@
         "PSYQUI - Beautiful Future.mp4",
         "PSYQUI - Education.mp4",
         "Zekk - City Lights (Remix).mp4",
-        ],"Nyahn")
+        ],"Nyahn","Hi")
