@@ -243,7 +243,7 @@
         //audio_controller
         function audio_play() {
             return new Promise((resolved,rejected) => {
-                if(sd_wrapper.children[0].children[0].readyState == 4){
+                if(sd_wrapper.children[0].children[0].readyState > 1){
                     curr_player.textContent = "| |"
                     currentAudio.play()
                     media.play()
@@ -273,7 +273,7 @@
         }
         function display_icon(icon,path){
             return new Promise((resolved,rejected) => {
-                if(sd_wrapper.children[0].children[0].readyState == 4){
+                if(sd_wrapper.children[0].children[0].readyState > 1){
                     curr_icon.src = `${path}/${icon}`
                     curr_icon.play()
                     curr_icon.muted = true
