@@ -37,7 +37,7 @@
             }
         }
         setInterval(() => {
-            plist_promise()
+            plist_promise().catch(err => err)
         }, 1000)
         // setInterval(() => {
         //     if(currentAudio.ended){
