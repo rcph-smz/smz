@@ -33,6 +33,32 @@
                 }
             }
         }, 1000)
+        // setInterval(() => {
+        //     if(currentAudio.ended){
+        //         rndpath = random_int(0,pathList.length)
+        //         list = random_int(0,pathList[rndpath][1].length)
+        //         initialize_list(pathList[rndpath][1][list],pathList[rndpath][0])
+        //         audio_play()
+        //         display_title()
+        //         display_icon(pathList[rndpath][1][list],pathList[rndpath][0])
+        //         display_media()
+        //         var no_source = setTimeout(() => {
+        //             if(currentAudio.currentTime == 0){
+
+        //                 rndpath = random_int(0,pathList.length)
+        //                 list = random_int(0,pathList[rndpath][1].length)
+        //                 initialize_list(pathList[rndpath][1][list],pathList[rndpath][0])
+        //                 audio_play()
+        //                 display_title()
+        //                 display_icon(pathList[rndpath][1][list],pathList[rndpath][0])
+        //                 display_media()
+
+        //                 no_source
+        //             }
+        //         }, 1000);
+        //     }
+        // }, 1000);
+
         function delay_content(content,secs) {
             setTimeout(() => {
                 content
@@ -311,4 +337,4 @@
         "PSYQUI - Beautiful Future.mp4",
         "PSYQUI - Education.mp4",
         "Zekk - City Lights (Remix).mp4",
-        ],"Nyahn","Hi")
+        ],"Nyahn")
