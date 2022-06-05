@@ -18,22 +18,26 @@
         const playlist_holder = document.querySelector(".playlist-holder")
 
         async function plist_promise() {
-            pathdata = sd_wrapper.children[0].children[0].src.split("/")
+            try {
+                pathdata = sd_wrapper.children[0].children[0].src.split("/")
 
-            if(currentAudio.ended && plist_vl[0] != undefined){
-                for(data of pathList){
-                    for(let k = 0; k < data[1].length; ++k){
-                        if(`${data[0]}/${data[1][k]}` == `${data[0]}/${plist_vl[0]}` && plist_vl[0] == decodeURI(pathdata[pathdata.length - 1])){
-                                initialize_list(plist_vl[0],data[0])
-                                await audio_play()
-                                await display_icon(plist_vl[0],data[0])
-                                display_title()
-                                display_media()
-                                shift_playlist()
-                                console.log("plist promise end")
+                if(currentAudio.ended && plist_vl[0] != undefined){
+                    for(data of pathList){
+                        for(let k = 0; k < data[1].length; ++k){
+                            if(`${data[0]}/${data[1][k]}` == `${data[0]}/${plist_vl[0]}` && plist_vl[0] == decodeURI(pathdata[pathdata.length - 1])){
+                                    initialize_list(plist_vl[0],data[0])
+                                    await audio_play()
+                                    await display_icon(plist_vl[0],data[0])
+                                    display_title()
+                                    display_media()
+                                    shift_playlist()
+                                    console.log("plist promise end")
+                            }
                         }
                     }
                 }
+            } catch (err){
+                
             }
         }
         setInterval(() => {
@@ -243,12 +247,20 @@
         //audio_controller
         function audio_play() {
             return new Promise((resolved,rejected) => {
-                if(sd_wrapper.children[0].children[0].readyState > 1){
-                    curr_player.textContent = "| |"
-                    currentAudio.play()
-                    media.play()
-                    console.log("audio done")
-                    resolved()
+                try {
+                    if(sd_wrapper.children[0].children[0].readyState > 1){
+                        curr_player.textContent = "| |"
+                        currentAudio.play()
+                        media.play()
+                        console.log("audio done")
+                        resolved()
+                    }
+                } catch(err){
+                        curr_player.textContent = "| |"
+                        currentAudio.play()
+                        media.play()
+                        console.log("audio done")
+                        resolved()
                 }
             })
         }
@@ -273,16 +285,20 @@
         }
         function display_icon(icon,path){
             return new Promise((resolved,rejected) => {
-                if(sd_wrapper.children[0].children[0].readyState > 1){
-                    curr_icon.src = `${path}/${icon}`
-                    curr_icon.play()
-                    curr_icon.muted = true
-                    setTimeout(() => {
-                        curr_icon.currentTime = 10
-                        curr_icon.pause()
-                        console.log("icon done")
-                        resolved()
-                    }, 200);
+                try {
+                    if(sd_wrapper.children[0].children[0].readyState > 1){
+                        curr_icon.src = `${path}/${icon}`
+                        curr_icon.play()
+                        curr_icon.muted = true
+                        setTimeout(() => {
+                            curr_icon.currentTime = 10
+                            curr_icon.pause()
+                            console.log("icon done")
+                            resolved()
+                        }, 200);
+                    }
+                } catch (err){
+
                 }
             })
             
