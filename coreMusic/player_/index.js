@@ -212,6 +212,23 @@
             plist.appendChild(plist_holder)
             plist_holder.appendChild(plist_title)
             sd_wrapper.appendChild(plist)
+
+            function playlist_screen_out() {
+                plist_ilist.currentTime = 10
+            }
+
+            const plist_ilist_observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if(!entry.isIntersecting){
+                        entry.target.src = ""
+                    }
+                    else {
+                        entry.target.src = `${path}/${list}`
+                        playlist_screen_out()
+                    }
+                })
+            })
+            plist_ilist_observer.observe(plist_ilist)
         }
         function shift_playlist() {
             plist_vl.shift()
