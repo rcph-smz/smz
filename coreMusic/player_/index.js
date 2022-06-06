@@ -27,8 +27,8 @@
                             if(`${data[0]}/${data[1][k]}` == `${data[0]}/${plist_vl[0]}` && plist_vl[0] == decodeURI(pathdata[pathdata.length - 1])){
                                     initialize_list(plist_vl[0],data[0])
                                     await audio_play()
-                                    await display_icon(plist_vl[0],data[0])
                                     display_title()
+                                    await display_icon(plist_vl[0],data[0])
                                     display_media()
                                     shift_playlist()
                                     console.log("plist promise end")
@@ -41,8 +41,9 @@
             }
         }
         setInterval(() => {
-            plist_promise().catch(err => err)
+            plist_promise()
         }, 1000)
+
         // setInterval(() => {
         //     if(currentAudio.ended){
         //         rndpath = random_int(0,pathList.length)
@@ -162,12 +163,13 @@
                         const ctr_vlist_observer = new IntersectionObserver(entries => {
                             entries.forEach(entry => {
                                 if(!entry.isIntersecting){
-                                    entry.target.src = ""
+                                    entry.target.preload = "none"
                                 }
                                 else {
-                                    entry.target.src = `${path}/${list}`
+                                    entry.target.preload = "auto"
                                     ctr_screen_out()
                                 }
+                                entry.target.src = `${path}/${list}`
                             })
                         })
                         ctr_vlist_observer.observe(ctr_vlist)
@@ -216,16 +218,17 @@
             function playlist_screen_out() {
                 plist_ilist.currentTime = 10
             }
-
+            
             const plist_ilist_observer = new IntersectionObserver(entries => {
                 entries.forEach(entry => {
                     if(!entry.isIntersecting){
-                        entry.target.src = ""
+                        entry.target.preload = "none"
                     }
                     else {
-                        entry.target.src = `${path}/${list}`
+                        entry.target.preload = "auto"
                         playlist_screen_out()
                     }
+                    entry.target.src = `${path}/${list}`
                 })
             })
             plist_ilist_observer.observe(plist_ilist)
@@ -315,7 +318,15 @@
                         }, 200);
                     }
                 } catch (err){
-
+                    curr_icon.src = `${path}/${icon}`
+                    curr_icon.play()
+                    curr_icon.muted = true
+                    setTimeout(() => {
+                        curr_icon.currentTime = 10
+                        curr_icon.pause()
+                        console.log("icon done")
+                        resolved()
+                    }, 200);
                 }
             })
             
