@@ -1,9 +1,14 @@
-* the purpose is to make a random multiplication assessment in certain option- there's an option/function to pick multiplication from 1 - 10 (or custom)
+* the purpose is to make a random multiplication assessment in certain option
+
+- there's an option/function to pick multiplication from 1 - 10 (or custom) 
+
+- there's an option to ignore a number
 
 - there's an option of timer
 
 - there's an option on how many the question does until it ends to the last question
 
-- if the client/user is wrong it will show the real answer
+
+- if the client/user is wrong it will show the real answer(optional)
 
 

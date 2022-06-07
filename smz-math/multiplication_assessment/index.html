@@ -55,6 +55,8 @@
 
             border: solid 1px black;
 
+            overflow: wrap;
+
 
         }
         .input {
@@ -74,6 +76,24 @@
             outline: none;
             
         }
+        .correct {
+            position: fixed;
+            z-index: auto;
+            top: 0;
+            left: 0;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            
+            min-width: 50px;
+            min-height: 50px;
+
+            font-size: 1.1em;
+            font-family: "mochiy_pop_one";
+
+            border: solid 1px green;
+        }
 
     </style>
 </head>
@@ -81,19 +101,27 @@
     <div class="wrapper">
         <div class="display"></div>
         <input type="text" class="input" autofocus="autofocus" autocomplete="off">
+        <div class="correct">
+            0
+        </div>
     </div>
     <script>
-        function randint(min,max){
-            return Math.floor(Math.random() * (max - min)) + min
-        }
 
         const display = document.querySelector(".display")
         const input = document.querySelector(".input")
+        const correct = document.querySelector(".correct")
 
-        let min_term = 1
+        let min_term = 0
         let max_term = 10
         let term_amount = 2
+
         let answer = null
+        let right_answer = 0
+        
+        function randint(min,max){
+            return Math.floor(Math.random() * (max - min)) + min
+        }
+        
 
         function assess(min,max,amount) {
             let terms = []
@@ -121,6 +149,12 @@
         }
         function inspect(client_argument) {
             if(client_argument.target.value == answer){
+                right_answer += 1
+                correct.textContent = right_answer
+                assess(min_term,max_term,term_amount)
+                client_argument.target.value = ""
+            }
+            if(client_argument.target.value == "skip"){
                 assess(min_term,max_term,term_amount)
                 client_argument.target.value = ""
             }
@@ -132,6 +166,18 @@
         input.addEventListener("keyup",(e) => {
             inspect(e)
         })
+        function custom(min,max,amount,ignore){
+
+            if(typeof(min) == "number"){
+                min_term = min
+            }
+            if(typeof(max) == "number"){
+                max_term = max
+            }
+            if(typeof(amount) == "number"){
+                term_amount = amount
+            }
+        }
         
         assess(min_term,max_term,term_amount)
 
