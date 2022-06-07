@@ -92,14 +92,16 @@
 
         let min_term = 1
         let max_term = 10
-        let term_amount = 4
+        let term_amount = 2
+        let answer = null
 
         function assess(min,max,amount) {
             let terms = []
+            let cast_text = ""
+            let product = 1
             for(let i = 0; i < amount; ++i){
                 terms.push(randint(min,max))
             }
-            let cast_text = ""
             terms.forEach((term,index) => {
                 if(index == 0){
                     cast_text += `${term} `
@@ -111,19 +113,24 @@
                     cast_text += `x ${term} `
                 }
             })
-            let product = 1
             for(i of terms){
                 product *= i
             }
             display.textContent = cast_text
-            console.log(product)
+            answer = product
+        }
+        function inspect(client_argument) {
+            if(client_argument.target.value == answer){
+                assess(min_term,max_term,term_amount)
+                client_argument.target.value = ""
+            }
         }
 
         display.addEventListener("pointerdown", (e) => {
             assess(min_term,max_term,term_amount)
         })
         input.addEventListener("keyup",(e) => {
-
+            inspect(e)
         })
         
         assess(min_term,max_term,term_amount)
