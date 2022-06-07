@@ -9,10 +9,15 @@
     <meta property="og:image" content="">
     <title>Multiplication Assessment</title>
     <style>
+        @font-face {
+            font-family: "mochiy_pop_one";
+            src: url("font/Mochiy_Pop_One/MochiyPopOne-Regular.ttf");
+        }
         * {
             padding: 0;
             margin: 0;
             box-sizing: border-box;
+
         }
         body {
             background-color: lavender;
@@ -20,9 +25,109 @@
             height: 100vh;
             width: 100vw;
         }
+        .wrapper {
+            position: static;
+            z-index: auto;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+            width: 100vw;
+
+            border: solid 1px red;
+        }
+        .display {
+            position: static;
+            z-index: auto;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: clamp(30px,3vw,3vw);
+
+            min-width: 290px;
+            min-height: 50px;
+
+            font-size: 1.1em;
+            font-family: "mochiy_pop_one";
+
+            border: solid 1px black;
+
+
+        }
+        .input {
+            position: static;
+            z-index: auto;
+
+            display: block;
+
+            min-width: 290px;
+            min-height: 50px;
+
+            font-size: 1.1em;
+            font-family: "mochiy_pop_one";
+            text-align: center;
+
+            border: solid 1px transparent;
+            outline: none;
+            
+        }
+
     </style>
 </head>
 <body>
-    
+    <div class="wrapper">
+        <div class="display"></div>
+        <input type="text" class="input" autofocus="autofocus" autocomplete="off">
+    </div>
+    <script>
+        function randint(min,max){
+            return Math.floor(Math.random() * (max - min)) + min
+        }
+
+        const display = document.querySelector(".display")
+        const input = document.querySelector(".input")
+
+        let min_term = 1
+        let max_term = 10
+        let term_amount = 4
+
+        function assess(min,max,amount) {
+            let terms = []
+            for(let i = 0; i < amount; ++i){
+                terms.push(randint(min,max))
+            }
+            let cast_text = ""
+            terms.forEach((term,index) => {
+                if(index == 0){
+                    cast_text += `${term} `
+                }
+                else if(index == terms.length - 1){
+                    cast_text += `x ${term} `
+                }
+                else{
+                    cast_text += `x ${term} `
+                }
+            })
+            let product = 1
+            for(i of terms){
+                product *= i
+            }
+            display.textContent = cast_text
+            console.log(product)
+        }
+
+        display.addEventListener("pointerdown", (e) => {
+            assess(min_term,max_term,term_amount)
+        })
+        input.addEventListener("keyup",(e) => {
+
+        })
+        
+        assess(min_term,max_term,term_amount)
+
+    </script>
 </body>
 </html>
