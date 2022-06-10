@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta property="og:title" content="Multiplication Assessment">
-    <meta property="og:description" content="want to increase your multiplication from 1 to 10">
+    <meta property="og:description" content="want to enhance your multiplication from 1 to 10">
     <meta property="og:image" content="">
     <title>Multiplication Assessment</title>
     <style>
@@ -111,7 +111,7 @@
         const input = document.querySelector(".input")
         const correct = document.querySelector(".correct")
 
-        let min_term = 0
+        let min_term = 1
         let max_term = 10
         let term_amount = 2
 
@@ -167,7 +167,6 @@
             inspect(e)
         })
         function custom(min,max,amount,ignore){
-
             if(typeof(min) == "number"){
                 min_term = min
             }
