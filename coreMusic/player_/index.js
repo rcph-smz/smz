@@ -219,16 +219,20 @@
                 plist_ilist.currentTime = 10
             }
             
+            //bug 
             const plist_ilist_observer = new IntersectionObserver(entries => {
                 entries.forEach(entry => {
-                    if(!entry.isIntersecting){
-                        entry.target.preload = "none"
-                    }
-                    else {
+                    if(entry.target == sd_wrapper.children[0].children[0] && !entry.isIntersecting || entry.isIntersecting) {
                         entry.target.preload = "auto"
                         playlist_screen_out()
                     }
-                    entry.target.src = `${path}/${list}`
+                    else if(!entry.isIntersecting){
+                        entry.target.preload = "none"
+                    }
+                    else if(entry.isIntersecting) {
+                        entry.target.preload = "auto"
+                        playlist_screen_out()
+                    }
                 })
             })
             plist_ilist_observer.observe(plist_ilist)
