@@ -374,6 +374,37 @@
             font-family: Arial, Helvetica, sans-serif;
             font-weight: 500;
         }
+        .banner {
+            position: static;
+            z-index: auto;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .banner-list {
+            position: static;
+            z-index: auto;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            width: 100vw;
+            min-height: 100px;
+            max-height: 150px;
+            
+            object-fit: contain;
+            
+            background-image: url("https://yt3.ggpht.com/gRWIEeNv23VNjMYXEcmf8Ob5YLz7iQs3rLPMJN7TacIyhpTsrJS_B1Zw8hfMP95cJf4XtgoS=w2560-fcrop64=1,00005a57ffffa5a8-k-c0xffffffff-no-nd-rj");
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-attachment: local;
+            background-color: antiquewhite;
+            
+        }
+        
         @keyframes sd-btn {
             0% {
                 opacity: 1;

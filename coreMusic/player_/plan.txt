@@ -21,3 +21,8 @@ goal: when the user click the plus(+) sign it will add to playlist, but if he/sh
 - intersection possible ctr to make website faster
 
 - add ripple effect
+
+- create object that will store your previous interaction. 
+    for example : 
+        - it will store your playlist 
+        - it will store the custom function that you add (ctr_template_scroller,add_filler)

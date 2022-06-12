@@ -189,6 +189,17 @@
                 }
             }
         }
+        function add_filler() {
+            const filler = document.createElement("div")
+            filler.setAttribute("class","filler")
+
+            const body = document.body
+            for(bchild of body.children){
+                if(bchild.getAttribute("class") == "ctr-wrapper"){
+                    bchild.appendChild(filler)
+                }
+            }
+        }
         function ctr_template_scroller(lists,path,caption) {
             if(!caption) caption = path
             add_ctr_h(caption)
