@@ -136,7 +136,7 @@ const wb_srch = [
     ["yt:","https://www.youtube.com/results","search_query"],
     ["g:","https://www.google.com/search","q"],
     ["fb:","https://www.facebook.com/search/top","q"],
-    ["core:","./coreMusic/player_/index.html",""],
+    ["core:","https://rcph-smz.github.io/rcph_player/",""],
     ["dc:","https://discord.com/channels/@me",""]
 ]
 let flink = false
