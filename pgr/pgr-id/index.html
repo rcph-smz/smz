@@ -39,10 +39,7 @@
     </style>
 </head>
 <body>
-    <div class="temp-header">
-        Friends
-    </div>
-    <div class="temp-data-friends"></div>
+    
     <div class="temp-header">
         Students
     </div>
@@ -55,11 +52,46 @@
         Inactive-Students
     </div>
     <div class="temp-data-inactive-students"></div>
+    <div class="temp-header">
+        FriendList
+    </div>
+    <div class="temp-data-friends"></div>
     <script>
         const friends = document.querySelector(".temp-data-friends")
         const students = document.querySelector(".temp-data-students")
         const graduated = document.querySelector(".temp-data-graduated")
         const inactive_students = document.querySelector(".temp-data-inactive-students")
+        
+        students.textContent = `1st gen
+
+<clear>
+
+2nd gen
+
+Zurch - 14159300
+Rham - 14456474
+Kyunu - 12701527
+
+        `
+        graduated.textContent = `1st gen
+
+Blitzstream - 11269520
+Typo - 12419320
+Xiao - 11354428
+
+2nd gen
+        
+        `
+        inactive_students.textContent = `1st gen
+        
+arcea - 17751049
+PEKONG - 12478827
+Godkabuto - 11941136
+
+2nd gen
+        
+        `
+        
         friends.textContent = `Asuna - 10265389
 Hazama - 16961306
 Krisna - 18819117
@@ -70,14 +102,16 @@ Cowru - 16653789
 (Unknown) - 10246853
 HanaWeeb - 16234691
 Zylias - 17152264
-Genos - 11422939 - the guy that lost the time
+Genos - 11422939 : the guy that lost the time
 Doomcycle - 12498771
 Aisen - 18725206
 [Nicehealer] - 14682568
+
 Nyah comrade = {
 Tsukki : 13675375,
 Arriexha : 12611544
 }
+
 [Meta guy] - 12188296
 [Meta guy] - 11833015
 Satella - 17055845
@@ -97,27 +131,14 @@ Nzay - 12756672
 Shiraori - 11422939
 Zendroz - 10963944
 Darling - 12962691
-Opaistorm - 10334981
+Opalstorm - 10334981
+Lilith - 19772576 [cute]
+Mei - 10698569
+Mikasa - 12952238
+Kitty mate - 15166480
+Otaku Yuri - 18559942
+LazyCat - 17470582
 `
-        students.textContent = `1st gen
-
-Xiao - 11354428
-Zurch - 14159300
-Rham - 14456474
-        `
-        graduated.textContent = `1st gen
-
-Blitzstream - 11269520
-Typo - 12419320
-        
-        `
-        inactive_students.textContent = `1st gen
-        
-arcea - 17751049
-PEKONG - 12478827
-Godkabuto - 11941136
-        
-        `
     </script>
 </body>
 </html>
