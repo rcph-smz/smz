@@ -1,0 +1,111 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> sin wave </title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background-color: lavender;
+        }
+        .display {
+            position: static;
+            z-index: auto;
+
+            display: block;
+
+            height: 100vh;
+            width: 100vw;
+            
+            background-color: antiquewhite;
+        }
+        .indicator {
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            height: clamp(50px,100%,50px);
+            width: clamp(100px,20vw,100vw);
+
+            background-color: rgba(20, 233, 20, 0.531);
+
+        }
+        .object {
+            position: fixed;
+            z-index: auto;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            
+            height: 20px;
+            width: 20px;
+
+            border-radius: 50%;
+            background-color: rgb(191, 47, 81);
+        }
+    </style>
+</head>
+<body>
+    <div class="indicator">
+
+    </div>
+    <div class="display">
+        
+    </div>
+    <script>
+        const display = document.querySelector(".display")
+        const indicator = document.querySelector(".indicator")
+
+        let degree = 0
+        let rate = 10
+        let mag = 10
+        let amp = 50
+
+        function Rotate(deg) {
+            return deg % 360
+        }
+        function element_object(ypos = 0,m = 1) {
+            const e_object = document.createElement("div")
+            e_object.setAttribute("class","object")
+
+            e_object.style.left = innerWidth
+            e_object.style.top = (innerHeight / 2)
+
+            return e_object
+        }
+
+        setInterval(() => {
+            indicator.textContent = Rotate(degree)
+            for(i of display.children){
+                const left = i.style.left
+                const top = i.style.top
+                const xpos = left.substring(0,left.indexOf("px"))
+                const ypos = top.substring(0,top.indexOf("px"))
+
+                if(xpos < 0){
+                    i.style.left = innerWidth
+                    return
+                }
+                
+                i.style.left = `${xpos - 1 * mag}px`
+                i.style.top = `${(innerHeight / 2) + Math.sin(Rotate(degree)) * amp}px`
+            }
+            degree += 1
+        }, 1000 / rate);
+        
+        display.appendChild(element_object())
+        
+    </script>
+</body>
+</html>
